@@ -46,7 +46,7 @@ const campaignSchema = mongoose.Schema({
   ]
 })
 
-userSchema.set('toJSON', {
+campaignSchema.set('toJSON', {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString();
     delete returnedObject._id;

@@ -2,7 +2,6 @@ const express = require('express');
 const path = require('path');
 require('dotenv').config();
 const cors = require('cors');
-const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 const config = require('./utils/config');
@@ -10,6 +9,7 @@ const middleware = require('./utils/middleware');
 const logger = require('./utils/logger');
 
 const usersRouter = require('./controllers/users');
+const campaign = require('./models/campaign');
 
 const app = express();
 
@@ -27,8 +27,7 @@ app.use(cors());
 app.use(middleware.requestLogger);
 app.use(express.json());
 
-app.use('/api/user', usersRouter);
-
+app.use('/api/users', usersRouter);
 // redirect
 
 app.use(middleware.unknownEndpoint);
