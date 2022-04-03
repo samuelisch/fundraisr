@@ -12,6 +12,7 @@ const campaignSchema = mongoose.Schema({
   userCreated: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
+    // required: true,
   },
   amountTarget: {
     type: Number,
@@ -27,7 +28,7 @@ const campaignSchema = mongoose.Schema({
   },
   dateEnd: {
     type: String,
-    required: true,
+    // required: true,
   },
   donors: {
     type: mongoose.Schema.Types.ObjectId,

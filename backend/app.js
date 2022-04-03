@@ -9,7 +9,7 @@ const middleware = require('./utils/middleware');
 const logger = require('./utils/logger');
 
 const usersRouter = require('./controllers/users');
-const campaign = require('./models/campaign');
+const campaignsRouter = require('./controllers/campaigns');
 
 const app = express();
 
@@ -28,6 +28,7 @@ app.use(middleware.requestLogger);
 app.use(express.json());
 
 app.use('/api/users', usersRouter);
+app.use('/api/campaigns', campaignsRouter);
 // redirect
 
 app.use(middleware.unknownEndpoint);
