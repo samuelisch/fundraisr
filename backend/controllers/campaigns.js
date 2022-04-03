@@ -1,6 +1,5 @@
 const campaignsRouter = require('express').Router();
 const Campaign = require('../models/campaign');
-const { findByIdAndRemove } = require('../models/user');
 const User = require('../models/user');
 
 campaignsRouter.get('/', async (request, response) => {
@@ -33,6 +32,17 @@ campaignsRouter.post('/', async (request, response) => {
   const savedCampaign = await campaign.save()
   // update user instance creating this post
   response.json(savedCampaign)
+})
+
+campaignsRouter.put('/edit/:id', async (request, response) => {
+  const body = request.body;
+  const updatedCampaign = await Campaign
+    .findByIdAndUpdate(request.params.id, body, {new: true})
+  if (updatedCampaign) {
+    response.json(updatedCampaign)
+  } else {
+    response.status(404).end()
+  }
 })
 
 campaignsRouter.delete('/:id', async (request, response) => {
