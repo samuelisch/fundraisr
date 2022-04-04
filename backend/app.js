@@ -3,6 +3,7 @@ const path = require('path');
 require('dotenv').config();
 const cors = require('cors');
 const mongoose = require('mongoose');
+require('express-async-errors')
 
 const config = require('./utils/config');
 const middleware = require('./utils/middleware');

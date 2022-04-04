@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const usersRouter = require('express').Router();
 const User = require('../models/user');
+const Campaign = require('../models/campaign')
 const userExtractor = require('../utils/middleware').userExtractor;
 
 usersRouter.get('/', async (request, response) => {
@@ -10,9 +11,15 @@ usersRouter.get('/', async (request, response) => {
   response.json(fetchedUsers);
 })
 
-usersRouter.get('/:id', async (request, response) => {
+usersRouter.get('/:id', userExtractor, async (request, response) => {
+  const loggedUserId = request.user._id.toString()
+  const userId = request.params.id
+  if (loggedUserId !== userId) {
+    response.status(401).send({ error: 'Unauthorised' });
+  }
+
   const user = await User
-    .findById(request.params.id)
+    .findById(userId)
   
   if (user) {
     response.json(user)
@@ -25,7 +32,7 @@ usersRouter.post('/', async (request, response) => {
   const body = request.body
 
   if (body.password.length < 5) {
-    return response.status(400).json({ error: "Minimum password length of 5 required"})
+    response.status(400).json({ error: "Minimum password length of 5 required"})
   }
 
   const saltRounds = 10;
@@ -45,6 +52,12 @@ usersRouter.post('/', async (request, response) => {
 //edit details of user (not password)
 usersRouter.put('/edit/:id', userExtractor, async (request, response) => {
   const body = request.body;
+  const loggedUserId = request.user._id.toString()
+  const userId = request.params.id
+  if (loggedUserId !== userId) {
+    response.status(401).send({ error: 'Unauthorised' });
+  }
+
   const updatedUser = await User
     .findByIdAndUpdate(request.params.id, body, {new: true})
 
@@ -56,9 +69,15 @@ usersRouter.put('/edit/:id', userExtractor, async (request, response) => {
 })
 
 usersRouter.put('/edit/password/:id', userExtractor, async (request, response) => {
+  const loggedUserId = request.user._id.toString()
+  const userId = request.params.id
+  if (loggedUserId !== userId) {
+    response.status(401).send({ error: 'Unauthorised' });
+  }
+
   const password = request.body.password;
   if (password.length < 5) {
-    return response.status(400).json({ error: "Minimum password length of 5 required"})
+    response.status(400).json({ error: "Minimum password length of 5 required"})
   }
 
   const saltRounds = 10;
@@ -75,7 +94,14 @@ usersRouter.put('/edit/password/:id', userExtractor, async (request, response) =
 })
 
 usersRouter.delete('/:id', userExtractor, async (request, response) => {
-  const deletedUser = await User.findByIdAndRemove(request.params.id);
+  const loggedUserId = request.user._id.toString()
+  const userId = request.params.id
+  if (loggedUserId !== userId) {
+    response.status(401).send({ error: 'Unauthorised' });
+  }
+
+  await User.findByIdAndRemove(userId);
+  await Campaign.deleteMany({ userCreated: userId })
 
   response.status(204).end()
 })
