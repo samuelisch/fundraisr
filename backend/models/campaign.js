@@ -10,9 +10,18 @@ const campaignSchema = mongoose.Schema({
     required: true,
   },
   userCreated: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    // required: true,
+    id: {
+      type: String,
+      required: true,
+    },
+    name: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      required: true,
+    },
   },
   amountTarget: {
     type: Number,

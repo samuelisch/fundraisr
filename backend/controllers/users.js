@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const usersRouter = require('express').Router();
 const User = require('../models/user');
+const userExtractor = require('../utils/middleware').userExtractor;
 
 usersRouter.get('/', async (request, response) => {
   const fetchedUsers = await User
@@ -42,7 +43,7 @@ usersRouter.post('/', async (request, response) => {
 })
 
 //edit details of user (not password)
-usersRouter.put('/edit/:id', async (request, response) => {
+usersRouter.put('/edit/:id', userExtractor, async (request, response) => {
   const body = request.body;
   const updatedUser = await User
     .findByIdAndUpdate(request.params.id, body, {new: true})
@@ -54,7 +55,7 @@ usersRouter.put('/edit/:id', async (request, response) => {
   }
 })
 
-usersRouter.put('/edit/password/:id', async (request, response) => {
+usersRouter.put('/edit/password/:id', userExtractor, async (request, response) => {
   const password = request.body.password;
   if (password.length < 5) {
     return response.status(400).json({ error: "Minimum password length of 5 required"})
@@ -73,7 +74,7 @@ usersRouter.put('/edit/password/:id', async (request, response) => {
   }
 })
 
-usersRouter.delete('/:id', async (request, response) => {
+usersRouter.delete('/:id', userExtractor, async (request, response) => {
   const deletedUser = await User.findByIdAndRemove(request.params.id);
 
   response.status(204).end()
