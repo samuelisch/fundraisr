@@ -30,10 +30,12 @@ const campaignSchema = mongoose.Schema({
     type: String,
     // required: true,
   },
-  donors: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-  },
+  donors: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    }
+  ],
   images: [
     {
       data: Buffer,

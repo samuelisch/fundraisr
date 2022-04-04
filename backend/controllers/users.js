@@ -11,7 +11,7 @@ usersRouter.get('/', async (request, response) => {
 
 usersRouter.get('/:id', async (request, response) => {
   const user = await User
-    .findById(req.params.id)
+    .findById(request.params.id)
   
   if (user) {
     response.json(user)
