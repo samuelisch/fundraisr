@@ -70,6 +70,8 @@ campaignsRouter.delete('/:id', userExtractor, async (request, response) => {
     const newCampaignsCreated = user.campaignsCreated.filter(id => id.toString() !== campaign._id.toString())
     await User.findByIdAndUpdate(userId, { campaignsCreated: newCampaignsCreated }, { new: true })
     response.status(204).end()
+  } else {
+    response.status(401).send({ error: 'Unauthorised' });
   }
 })
 
