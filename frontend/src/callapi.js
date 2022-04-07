@@ -8,8 +8,8 @@ const allUsers = async () => {
     return response.data;
 }
 
-const singleUser = async () => {
-    const response = await axios.get(`${baseURL}/users/:id`);
+const singleUser = async (id) => {
+    const response = await axios.get(`${baseURL}/users/${id}`);
     return response.data;
 }
 
