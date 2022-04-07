@@ -11,3 +11,10 @@ const singleUser = async () => {
     const response = await axios.get(`${baseURL}/users/:id`);
     return response.data;
 }
+
+const server = {
+    allUsers,
+    singleUser
+}
+
+export default server
