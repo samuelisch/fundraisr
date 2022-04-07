@@ -1,0 +1,1 @@
+DELETE url/api/users/:id

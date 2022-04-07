@@ -1,0 +1,4 @@
+PUT url/api/users/edit/password/:id
+Content-Type: application/json
+
+body req

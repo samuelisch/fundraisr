@@ -1,0 +1,4 @@
+POST url/api/campaigns
+Content-Type: application/json
+
+body req
