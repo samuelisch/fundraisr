@@ -12,7 +12,6 @@ const Homepage = () => {
     const allUsers = async (event) => {
         event.preventDefault();
         const allUsersData = await callApi.allUsers();
-        console.log(allUsersData)
         setUsersList(allUsersData)
      }
 
