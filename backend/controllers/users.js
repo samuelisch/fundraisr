@@ -7,8 +7,9 @@ const userExtractor = require('../utils/middleware').userExtractor;
 usersRouter.get('/', async (request, response) => {
   const fetchedUsers = await User
     .find({})
-
+console.log(fetchedUsers);
   response.json(fetchedUsers);
+  
 })
 
 usersRouter.get('/:id', userExtractor, async (request, response) => {

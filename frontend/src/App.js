@@ -1,5 +1,4 @@
 import React from 'react';
-import callApi from './callapi'
 import Homepage from './components/Homepage';
 
 
