@@ -13,14 +13,20 @@ const singleUser = async (id) => {
     return response.data;
 }
 
-const createUser = async () => {
-    const response = await axios.post(`${baseURL}/users/new`);
-    return response.data;
+const createUser = async (name, email, passwordHash) => {
+    await axios.post(`${baseURL}/users/`, {name: name, email: email, passwordHash: passwordHash });
 } 
+
+//Campaign
+const allCampaigns = async () => {
+    const response = await axios.get(`${baseURL}/users`);
+    return response.data;
+}
 
 const server = {
     allUsers,
-    singleUser
+    singleUser,
+    createUser
 }
 
 export default server
