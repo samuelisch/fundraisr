@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
 import callApi from "../callApi";
-import Input from "./assets/Input";
-import Button from "./assets/Button";
-import tempLogin from "../tempLogin";
+import Signup from "./Signup";
+import Login from "./Login";
 
 const Homepage = () => {
   const [usersList, setUsersList] = useState([]);
-  const [loginEmail, setLoginEmail] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
 
   useEffect(() => {
     console.log(usersList);
@@ -19,50 +16,35 @@ const Homepage = () => {
     setUsersList(allUsersData);
   };
 
-  const singleUser = async (id) => {
-    // event.preventDefault();
+  const singleUser = async (event, id) => {
+    event.preventDefault();
     const singleUserData = await callApi.singleUser(id);
     console.log(singleUserData);
   };
 
-  const loginUser = async (e) => {
-      e.preventDefault();
-      const credentials = {
-          email: loginEmail,
-          password: loginPassword
-      }
-      const loginData = await tempLogin.loginUser(credentials)
-      console.log(loginData);
-  };
-
   return (
     <div>
-      <h1>Homepage</h1>
-      <form onSubmit={allUsers}>
-        <button type="submit">All Users</button>
-      </form>
-      <form onClick={() => singleUser("624e57e44f529d34847d5d26")}>
-        <button type="submit">Single User</button>
-      </form>
-      <form onSubmit={loginUser}>
-        <Input
-          label="login-email"
-          type="email"
-          value={loginEmail}
-          changeHandler={(e) => setLoginEmail(e.target.value)}
-          className=""
-          placeholder="E-mail"
-        />
-        <Input
-          label="login-password"
-          type="password"
-          value={loginPassword}
-          changeHandler={(e) => setLoginPassword(e.target.value)}
-          className=""
-          placeholder="Password"
-        />
-        <Button type="submit" text="Login" className="" />
-      </form>
+      <h1 className="font-bold">Homepage</h1>
+      <div className="flex flex-col space-y-4">
+        <form onSubmit={allUsers}>
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            type="submit"
+          >
+            All Users
+          </button>
+        </form>
+        <form onClick={(e) => singleUser(e, "624fa0568a6bab944590126f")}>
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            type="submit"
+          >
+            Single User
+          </button>
+        </form>
+        <Signup />
+        <Login />
+      </div>
     </div>
   );
 };

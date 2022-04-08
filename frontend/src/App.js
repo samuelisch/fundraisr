@@ -1,12 +1,11 @@
 import React from 'react';
 import Homepage from './components/Homepage';
 
-
 const App = () => {
   return (
-    <div className="App">
+    <div className="App pl-5">
       <h1>Hello world!</h1>
-      <Homepage/>
+      <Homepage />
     </div>
   );
 }

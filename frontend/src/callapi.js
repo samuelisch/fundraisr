@@ -1,26 +1,52 @@
-import axios from 'axios';
+import axios from "axios";
 
-const baseURL = "http://localhost:5001/api"
+const baseURL = "http://localhost:5001/api";
+
+let token;
+
+//Login
+const userLogin = async (credentials) => {
+  const response = await axios.post(`${baseURL}/login`, credentials);
+  token = "bearer " + response.data.token;
+  console.log("token is set!");
+  return response.data;
+};
 
 //Users
 const allUsers = async () => {
-    const response = await axios.get(`${baseURL}/users`);
-    return response.data;
-}
+  const response = await axios.get(`${baseURL}/users`);
+  return response.data;
+};
 
 const singleUser = async (id) => {
-    const response = await axios.get(`${baseURL}/users/${id}`);
-    return response.data;
-}
+  const config = {
+    headers: { Authorization: token },
+  };
 
-const createUser = async () => {
-    const response = await axios.post(`${baseURL}/users/new`);
-    return response.data;
-} 
+  const response = await axios.get(`${baseURL}/users/${id}`, config);
+  return response.data;
+};
+
+const createUser = async (name, email, password) => {
+  const response = await axios.post(`${baseURL}/users/`, {
+    name,
+    email,
+    password,
+  });
+  return response.data;
+};
+
+//Campaign
+const allCampaigns = async () => {
+  const response = await axios.get(`${baseURL}/users`);
+  return response.data;
+};
 
 const server = {
-    allUsers,
-    singleUser
-}
+  allUsers,
+  singleUser,
+  createUser,
+  userLogin,
+};
 
-export default server
+export default server;
