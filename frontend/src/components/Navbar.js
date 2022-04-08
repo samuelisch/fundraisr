@@ -2,15 +2,19 @@ import React from "react";
 
 const Navbar = () => {
   return (
-    <div className="navbar bg-base-200 sticky top-0">
+    <div className="navbar bg-base-200 sticky top-0 z-50">
       <div className="flex-1">
         <a className="btn btn-ghost normal-case text-xl" href="/">
           Fundraisr
         </a>
       </div>
       <div className="flex-none gap-2">
-        <label htmlFor="login" className="btn modal-button">log in</label>
-        <label htmlFor="signup" className="btn modal-button">sign up</label>
+        <label htmlFor="login" className="btn modal-button">
+          log in
+        </label>
+        <label htmlFor="signup" className="btn modal-button">
+          sign up
+        </label>
         <div className="dropdown dropdown-end">
           <button className="btn btn-square btn-ghost">
             <svg

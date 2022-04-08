@@ -1,6 +1,6 @@
-import React from 'react';
-import Login from '../Login';
-import SignUp from '../Signup';
+import React from "react";
+import Login from "../Login";
+import SignUp from "../Signup";
 
 const Modals = () => {
   return (
@@ -30,7 +30,7 @@ const Modals = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Modals
+export default Modals;

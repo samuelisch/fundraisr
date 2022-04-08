@@ -14,10 +14,10 @@ const Login = () => {
       password: loginPassword,
     };
     const loginData = await callApi.userLogin(credentials);
-    console.log(loginData)
+    console.log(loginData);
     //clears form
-    setLoginEmail('');
-    setLoginPassword('');
+    setLoginEmail("");
+    setLoginPassword("");
   };
 
   return (

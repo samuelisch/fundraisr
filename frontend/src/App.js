@@ -5,7 +5,6 @@ import Navbar from "./components/Navbar";
 import Modals from "./components/assets/Modals";
 
 const App = () => {
-
   return (
     <>
       <Modals />

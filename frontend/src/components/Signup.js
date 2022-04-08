@@ -2,18 +2,18 @@ import React, { useState } from "react";
 import callApi from "../callApi";
 
 const SignUp = () => {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const createUser = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const createdUser = await callApi.createUser(name, email, password);
-    console.log(createdUser)
-    //clear form 
-    setName('');
-    setEmail('');
-    setPassword('');
+    console.log(createdUser);
+    //clear form
+    setName("");
+    setEmail("");
+    setPassword("");
   };
 
   return (
