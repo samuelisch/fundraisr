@@ -2,20 +2,15 @@ import React from "react";
 
 const Navbar = () => {
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-base-200 sticky top-0">
       <div className="flex-1">
         <a className="btn btn-ghost normal-case text-xl" href="/">
           Fundraisr
         </a>
       </div>
       <div className="flex-none gap-2">
-        <div className="form-control">
-          <input
-            type="text"
-            placeholder="Search"
-            className="input input-bordered"
-          />
-        </div>
+        <label htmlFor="login" className="btn modal-button">log in</label>
+        <label htmlFor="signup" className="btn modal-button">sign up</label>
         <div className="dropdown dropdown-end">
           <button className="btn btn-square btn-ghost">
             <svg
