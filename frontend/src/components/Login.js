@@ -15,6 +15,9 @@ const Login = () => {
     };
     const loginData = await callApi.userLogin(credentials);
     console.log(loginData)
+    //clears form
+    setLoginEmail('');
+    setLoginPassword('');
   };
 
   return (

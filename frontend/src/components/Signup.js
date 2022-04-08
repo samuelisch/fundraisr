@@ -10,6 +10,10 @@ const SignUp = () => {
     e.preventDefault()
     const createdUser = await callApi.createUser(name, email, password);
     console.log(createdUser)
+    //clear form 
+    setName('');
+    setEmail('');
+    setPassword('');
   };
 
   return (
