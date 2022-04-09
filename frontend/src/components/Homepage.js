@@ -3,8 +3,10 @@ import callApi from "../callApi";
 import mainleft from "../components/assets/images/mainleft.jpg";
 import mainright from "../components/assets/images/mainright.jpg";
 import Button from "./assets/Button";
+import CampaignList from "./CampaignList";
 
 const Homepage = () => {
+ 
   const [usersList, setUsersList] = useState([]);
   const [campaignList, setCampaignList] = useState([]);
 
@@ -38,12 +40,14 @@ const Homepage = () => {
     setCampaignList(allCampaignsData);
   };
 
+  
+
   return (
     <div>
-      <h1 className="font-bold text-center text-xl">
+      <h1 className="font-bold text-center text-xl mt-5 mb-5">
         Support a cause, show you care.
       </h1>
-      <h1 className="font-bold text-center text-l text-blue-700">
+      <h1 className="font-bold text-center text-l text-blue-700 mb-5">
         I want to...
       </h1>
 
@@ -90,7 +94,9 @@ const Homepage = () => {
           </button>
         </form>
       </div>
+      <CampaignList campaignList={campaignList}/>
     </div>
+   
   );
 };
 
