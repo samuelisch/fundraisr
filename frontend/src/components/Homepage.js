@@ -6,12 +6,19 @@ import Button from "./assets/Button";
 
 const Homepage = () => {
   const [usersList, setUsersList] = useState([]);
+  const [campaignList, setCampaignList] = useState([]);
 
   useEffect(() => {
     if (usersList.length) {
       console.log(usersList);
     }
   }, [usersList]);
+
+  useEffect(() => {
+    if (campaignList.length) {
+      console.log(campaignList);
+    }
+  }, [campaignList]);
 
   const allUsers = async (event) => {
     event.preventDefault();
@@ -25,6 +32,12 @@ const Homepage = () => {
     console.log(singleUserData);
   };
 
+  const allCampaigns = async (event) => {
+    event.preventDefault();
+    const allCampaignsData = await callApi.allCampaigns();
+    setCampaignList(allCampaignsData);
+  };
+
   return (
     <div>
       <h1 className="font-bold text-center text-xl">
@@ -34,26 +47,27 @@ const Homepage = () => {
         I want to...
       </h1>
 
-      <div className="grid grid-cols-2 gap-4 flex justify-center ">
-        <div className="relative h-25">
+      <div className="flex justify-around">
+        <div className="relative">
           <img
             src={mainleft}
-            className="max-w-full object-contain rounded-lg"
+            className="rounded-lg object-fill h-96"
             alt=""
           />
           <Button
             type="button"
             text="Donate"
-            className="h-10 px-5 bg-white text-blue-700 transition-colors duration-150 rounded-lg focus:shadow-outline hover:bg-blue-500 hover:text-blue-100 absolute font-bold left-10 top-10"
+            className="h-10 px-5 bg-white text-blue-700 transition-colors duration-150 rounded-lg focus:shadow-outline hover:bg-blue-500 hover:text-blue-100 absolute font-bold left-5 top-5"
+            clickHandler={allCampaigns}
           />
         </div>
 
-        <div className="relative h-25">
-          <img src={mainright} className=" object-contain rounded-lg" alt="" />
+        <div className="relative">
+          <img src={mainright} className="rounded-lg object-fill h-96" alt="" />
           <Button
             type="button"
             text="Start a Campaign"
-            className="h-10 px-5 bg-white text-blue-700 transition-colors duration-150 rounded-lg focus:shadow-outline hover:bg-blue-500 hover:text-blue-100 absolute font-bold left-10 top-10"
+            className="h-10 px-5 bg-white text-blue-700 transition-colors duration-150 rounded-lg focus:shadow-outline hover:bg-blue-500 hover:text-blue-100 absolute font-bold left-5 top-5"
           />
         </div>
       </div>
