@@ -4,11 +4,13 @@ import mainleft from "../components/assets/images/mainleft.jpg";
 import mainright from "../components/assets/images/mainright.jpg";
 import Button from "./assets/Button";
 import CampaignList from "./CampaignList";
+import SingleCampaign from "./SingleCampaign";
 
 const Homepage = () => {
  
   const [usersList, setUsersList] = useState([]);
   const [campaignList, setCampaignList] = useState([]);
+  const [selectedCampaign, setSelectedCampaign] = useState({})
 
   useEffect(() => {
     if (usersList.length) {
@@ -21,6 +23,12 @@ const Homepage = () => {
       console.log(campaignList);
     }
   }, [campaignList]);
+
+  useEffect(() => {
+    if (selectedCampaign) {
+      console.log(selectedCampaign);
+    }
+  }, [selectedCampaign]);
 
   const allUsers = async (event) => {
     event.preventDefault();
@@ -39,7 +47,12 @@ const Homepage = () => {
     const allCampaignsData = await callApi.allCampaigns();
     setCampaignList(allCampaignsData);
   };
-
+  
+  const singleCampaign = async (event, id) => {
+    event.preventDefault();
+    const singleCampaignData = await callApi.singleCampaign(id);
+    setSelectedCampaign(singleCampaignData)
+    };
   
 
   return (
@@ -93,8 +106,17 @@ const Homepage = () => {
             Single User
           </button>
         </form>
+        <form onSubmit={(e) => singleCampaign(e, "624ff26987b87cf280b74bca")}>
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            type="submit"
+          >
+            Single Campaign
+          </button>
+        </form>
       </div>
-      <CampaignList campaignList={campaignList}/>
+      <CampaignList campaignList={campaignList}selectedCampaign={selectedCampaign} setSelectedCampaign={setSelectedCampaign} singleCampaign={singleCampaign} />
+      <SingleCampaign selectedCampaign={selectedCampaign} setSelectedCampaign={setSelectedCampaign}/>
     </div>
    
   );

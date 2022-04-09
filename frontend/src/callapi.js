@@ -42,12 +42,19 @@ const allCampaigns = async () => {
     return response.data;
   };
 
+const singleCampaign = async (id) => {
+    const response = await axios.get(`${baseURL}/campaigns/${id}`);
+    return response.data;
+  };
+
+
 const server = {
   allUsers,
   singleUser,
   createUser,
   userLogin,
-  allCampaigns
+  allCampaigns,
+  singleCampaign
 };
 
 export default server;
