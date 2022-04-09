@@ -11,7 +11,7 @@ module.exports = {
     themes: [
       {
         light: {
-          ...require("daisyui/src/colors/themes")["[data-theme=light]"],
+          ...require("daisyui/src/colors/themes")["[data-theme=corporate]"],
           primary: "blue",
           "primary-focus": "mediumblue",
         },
