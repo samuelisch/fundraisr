@@ -4,7 +4,7 @@ import mainleft from "../components/assets/images/mainleft.jpg";
 import mainright from "../components/assets/images/mainright.jpg";
 import Button from "./assets/Button";
 import CampaignList from "./CampaignList";
-import SingleCampaign from "./SingleCampaign";
+// import SingleCampaign from "./SingleCampaign";
 
 const Homepage = () => {
  
@@ -116,7 +116,7 @@ const Homepage = () => {
         </form>
       </div>
       <CampaignList campaignList={campaignList}selectedCampaign={selectedCampaign} setSelectedCampaign={setSelectedCampaign} singleCampaign={singleCampaign} />
-      <SingleCampaign selectedCampaign={selectedCampaign} setSelectedCampaign={setSelectedCampaign}/>
+      {/* <SingleCampaign selectedCampaign={selectedCampaign} setSelectedCampaign={setSelectedCampaign}/> */}
     </div>
    
   );

@@ -5,19 +5,21 @@ import Homepage from "./components/Homepage";
 import Navbar from "./components/Navbar";
 import LoginModal from "./components/LoginModal";
 import SignupModal from "./components/SignupModal";
+import CampaignList from "./components/CampaignList";
 
 const App = () => {
   return (
-    <div className="App">
+    <BrowserRouter>
       <LoginModal />
       <SignupModal />
-      <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Homepage />} />
-        </Routes>
-      </BrowserRouter>
-    </div>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/campaigns" element={<CampaignList />} />
+        {/* <Route path="/campaigns/:id" element={<SingleCampaign />} /> */}
+        {/* <Route path="/newcampaign" element={<NewCampaignForm />} /> */}
+      </Routes>
+    </BrowserRouter>
   );
 };
 
