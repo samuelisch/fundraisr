@@ -7,6 +7,7 @@ const Input = ({
   changeHandler,
   label,
   placeholder,
+  multiple
 }) => {
   return (
     <input
@@ -17,6 +18,7 @@ const Input = ({
       aria-label={label}
       autoComplete="off"
       placeholder={placeholder}
+      multiple={multiple}
     />
   );
 };

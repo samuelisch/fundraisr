@@ -2,6 +2,10 @@ const config = require("./config");
 const logger = require("./logger");
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
+const cloudinary = require('cloudinary');
+const multer = require('multer');
+
+cloudinary.config(config.CLOUDINARY_CONFIG)
 
 const requestLogger = (request, response, next) => {
   logger.info("Method: ", request.method);

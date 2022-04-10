@@ -3,6 +3,7 @@ const path = require('path');
 require('dotenv').config();
 const cors = require('cors');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 require('express-async-errors')
 
 const config = require('./utils/config');
@@ -28,7 +29,8 @@ mongoose.connect(config.MONGODB_URI)
 app.use(cors());
 app.use(middleware.requestLogger);
 app.use(middleware.tokenExtractor);
-app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
 app.use('/api/users', usersRouter);
 app.use('/api/campaigns', campaignsRouter);

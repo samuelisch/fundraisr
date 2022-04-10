@@ -40,12 +40,21 @@ const createUser = async (name, email, password) => {
 const allCampaigns = async () => {
     const response = await axios.get(`${baseURL}/campaigns`);
     return response.data;
-  };
+};
 
 const singleCampaign = async (id) => {
     const response = await axios.get(`${baseURL}/campaigns/${id}`);
     return response.data;
-  };
+};
+
+const createCampaign = async (formData) => {
+    const config = {
+        headers: { Authorization: token },
+      };
+
+    const response = await axios.post(`${baseURL}/campaigns`, formData, config);
+    return response.data
+}
 
 
 const server = {
@@ -54,7 +63,8 @@ const server = {
   createUser,
   userLogin,
   allCampaigns,
-  singleCampaign
+  singleCampaign,
+  createCampaign
 };
 
 export default server;

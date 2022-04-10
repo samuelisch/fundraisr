@@ -38,8 +38,12 @@ const campaignSchema = mongoose.Schema({
   ],
   images: [
     {
-      data: Buffer,
-      contentType: String
+      url: {
+        type: String
+      },
+      id: {
+        type: String
+      }
     }
   ],
   tags: [

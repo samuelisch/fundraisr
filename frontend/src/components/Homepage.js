@@ -4,10 +4,10 @@ import mainleft from "../components/assets/images/mainleft.jpg";
 import mainright from "../components/assets/images/mainright.jpg";
 import Button from "./assets/Button";
 import CampaignList from "./CampaignList";
+import NewCampaign from "./NewCampaign";
 // import SingleCampaign from "./SingleCampaign";
 
 const Homepage = () => {
- 
   const [usersList, setUsersList] = useState([]);
   const [campaignList, setCampaignList] = useState([]);
   const [selectedCampaign, setSelectedCampaign] = useState({})
@@ -53,7 +53,6 @@ const Homepage = () => {
     const singleCampaignData = await callApi.singleCampaign(id);
     setSelectedCampaign(singleCampaignData)
     };
-  
 
   return (
     <div>
@@ -117,6 +116,7 @@ const Homepage = () => {
       </div>
       <CampaignList campaignList={campaignList}selectedCampaign={selectedCampaign} setSelectedCampaign={setSelectedCampaign} singleCampaign={singleCampaign} />
       {/* <SingleCampaign selectedCampaign={selectedCampaign} setSelectedCampaign={setSelectedCampaign}/> */}
+      <NewCampaign />
     </div>
    
   );

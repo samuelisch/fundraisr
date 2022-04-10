@@ -1,6 +1,9 @@
 const campaignsRouter = require('express').Router();
 const Campaign = require('../models/campaign');
 const User = require('../models/user');
+const upload = require('../multer');
+const cloudinary = require('../cloudinary');
+const fs = require("fs")
 const userExtractor = require('../utils/middleware').userExtractor;
 
 campaignsRouter.get('/', async (request, response) => {
@@ -17,9 +20,20 @@ campaignsRouter.get("/:id", async (request, response) => {
   }
 })
 
-campaignsRouter.post('/', userExtractor, async (request, response) => {
+campaignsRouter.post('/', userExtractor, upload.array('file'), async (request, response) => {
+  const uploader = async (path) => await cloudinary.uploads(path, 'fundraisr');
+
   const body = request.body;
   const user = request.user;
+
+  const urls = [];
+  const files = request.files;
+  for (const file of files) {
+    const { path } = file;
+    const newPath = await uploader(path)
+    urls.push(newPath);
+    fs.unlinkSync(path);
+  }
 
   const campaign = new Campaign ({
     title: body.title,
@@ -27,6 +41,7 @@ campaignsRouter.post('/', userExtractor, async (request, response) => {
     userCreated: user._id.toString(),
     amountTarget: body.amountTarget,
     dateStart: new Date().toISOString(),
+    images: urls
     // dateEnd
   })
 
