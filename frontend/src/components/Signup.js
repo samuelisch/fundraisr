@@ -20,6 +20,7 @@ const SignUp = () => {
     <>
       <h1 className="font-bold">Create New User</h1>
       <form onSubmit={createUser}>
+
         <label htmlFor="username">Username:</label>
         <br></br>
         <input

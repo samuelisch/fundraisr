@@ -3,7 +3,6 @@ import React from 'react';
 import testimg from '../components/assets/images/children-option1.jpg'
 import { FaAngleDoubleRight } from "react-icons/fa";
 
-
 const CampaignList = (props) => {
 
 let list = props.campaignList.map((element, index) => {
@@ -17,7 +16,7 @@ let list = props.campaignList.map((element, index) => {
                     <div className="text-gray-900 font-bold text-xl mb-2">{element.title}</div>
                     <p className="text-gray-700 text-base">Amount target: ${element.amountTarget}</p>
                 </div>
-                <div className="bg-grey-lighter p-3 flex items-end justify-end transition hover:bg-grey-light" onClick={(e) => props.singleCampaign(e, element.id)}>
+                <div className="bg-grey-lighter p-3 flex items-end justify-end transition hover:bg-grey-light" data-bs-toggle="modal" data-bs-target="#singlecampaign" onClick={(e) => props.singleCampaign(e, element.id)}>
                 See More&nbsp;<FaAngleDoubleRight/>
                 </div>
             </div>
@@ -30,6 +29,7 @@ return (
         <>
         <div className="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
         {list}
+
         </div>
         </>
     );

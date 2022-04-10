@@ -56,6 +56,10 @@ const createCampaign = async (formData) => {
     return response.data
 }
 
+const updateCampaign = async (id) => {
+    const response = await axios.put(`${baseURL}/campaigns/edit/${id}`);
+    return response.data;
+  };
 
 const server = {
   allUsers,

@@ -5,12 +5,13 @@ import mainright from "../components/assets/images/mainright.jpg";
 import Button from "./assets/Button";
 import CampaignList from "./CampaignList";
 import NewCampaign from "./NewCampaign";
-// import SingleCampaign from "./SingleCampaign";
+import SingleCampaignModal from "./SingleCampaignModal";
 
 const Homepage = () => {
   const [usersList, setUsersList] = useState([]);
   const [campaignList, setCampaignList] = useState([]);
   const [selectedCampaign, setSelectedCampaign] = useState({})
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     if (usersList.length) {
@@ -52,6 +53,7 @@ const Homepage = () => {
     event.preventDefault();
     const singleCampaignData = await callApi.singleCampaign(id);
     setSelectedCampaign(singleCampaignData)
+    setShowModal(true)
     };
 
   return (
@@ -114,9 +116,11 @@ const Homepage = () => {
           </button>
         </form>
       </div>
-      <CampaignList campaignList={campaignList}selectedCampaign={selectedCampaign} setSelectedCampaign={setSelectedCampaign} singleCampaign={singleCampaign} />
-      {/* <SingleCampaign selectedCampaign={selectedCampaign} setSelectedCampaign={setSelectedCampaign}/> */}
       <NewCampaign />
+      <CampaignList campaignList={campaignList}selectedCampaign={selectedCampaign} setSelectedCampaign={setSelectedCampaign} singleCampaign={singleCampaign} showModal={showModal} setShowModal={setShowModal}/>
+      
+      {showModal ? <SingleCampaignModal selectedCampaign={selectedCampaign} setSelectedCampaign={setSelectedCampaign} showModal={showModal} setShowModal={setShowModal}/> : null}
+      
     </div>
    
   );
