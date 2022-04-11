@@ -1,6 +1,14 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  
+  const logoutUser = () => {
+    window.localStorage.removeItem('loggedUser')
+    navigate('/')
+  }
+
   return (
     <div className="navbar bg-base-200 sticky top-0 z-50">
       <div className="flex-1">
@@ -38,14 +46,10 @@ const Navbar = () => {
             <li>
               <a className="justify-between" href="#temp">
                 Profile
-                <span className="badge">New</span>
               </a>
             </li>
             <li>
-              <a href="#temp">Settings</a>
-            </li>
-            <li>
-              <a href="#temp">Logout</a>
+              <span onClick={logoutUser}>Logout</span>
             </li>
           </ul>
         </div>

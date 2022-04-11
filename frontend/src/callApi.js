@@ -2,13 +2,15 @@ import axios from "axios";
 
 const baseURL = "http://localhost:5001/api";
 
-let token;
+let token = null;
+
+const setToken = (newToken) => {
+    token = `bearer ${newToken}`
+}
 
 //Login
 const userLogin = async (credentials) => {
   const response = await axios.post(`${baseURL}/login`, credentials);
-  token = "bearer " + response.data.token;
-  console.log("token is set!");
   return response.data;
 };
 
@@ -23,7 +25,7 @@ const singleUser = async (id) => {
     headers: { Authorization: token },
   };
 
-  const response = await axios.get(`${baseURL}/users/edit/${id}`, config);
+  const response = await axios.get(`${baseURL}/users/${id}`, config);
   return response.data;
 };
 
@@ -42,7 +44,7 @@ const updateUser = async (userId, updateObj) => {
   };
 
   const response = await axios.put(
-    `${baseURL}/users/${userId}`,
+    `${baseURL}/users/edit/${userId}`,
     updateObj,
     config
   );
@@ -92,6 +94,7 @@ const server = {
   singleCampaign,
   createCampaign,
   updateCampaign,
+  setToken,
 };
 
 export default server;

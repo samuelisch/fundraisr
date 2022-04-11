@@ -14,7 +14,11 @@ const Login = () => {
       password: loginPassword,
     };
     const loginData = await callApi.userLogin(credentials);
-    console.log(loginData);
+    // set token to callApi
+    callApi.setToken(loginData.token)
+    //set token to localStorage
+    window.localStorage.setItem('loggedUser', JSON.stringify(loginData));
+    console.log('logged in!');
     //clears form
     setLoginEmail("");
     setLoginPassword("");
