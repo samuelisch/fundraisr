@@ -1,64 +1,96 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import callApi from "../callApi";
+import Button from "./assets/Button";
+import Input from "./assets/Input";
 
-const SignUp = () => {
+const Signup = () => {
+  const navigate = useNavigate()
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [valid, setValid] = useState(false);
+
+  useEffect(() => {
+    if (confirmPassword !== "" && confirmPassword === password) {
+      setValid(true)
+    } else {
+      setValid(false)
+    }
+  }, [confirmPassword, password])
 
   const createUser = async (e) => {
     e.preventDefault();
-    const createdUser = await callApi.createUser(name, email, password);
-    console.log(createdUser);
-    //clear form
-    setName("");
-    setEmail("");
-    setPassword("");
+    try {
+      const createdUser = await callApi.createUser(name, email, password);
+      console.log(createdUser);
+      //clear form
+      setName("");
+      setEmail("");
+      setPassword("");
+      navigate('/login')
+    } catch (err) {
+      console.error(err);
+      setPassword("");
+    }
   };
 
   return (
-    <>
-      <h1 className="font-bold">Create New User</h1>
-      <form onSubmit={createUser}>
-
-        <label htmlFor="username">Username:</label>
-        <br></br>
-        <input
-          className="border-2 border-blue-600 rounded-lg"
+    <div className="flex-col items-center justify-center text-center">
+      <h1 className="font-bold text-2xl p-5">Sign up with Fundraisr</h1>
+      <form onSubmit={createUser} className="flex flex-col items-center justify-center">
+        <Input
+          className="border-2 border-blue-600 rounded-lg p-1  m-3"
           type="text"
-          name="name"
           value={name}
-          onChange={(e) => setName(e.target.value)}
+          placeholder="Name"
+          changeHandler={(e) => setName(e.target.value)}
+          minLength={2}
         />
-        <br></br>
-        <label htmlFor="email">Email:</label>
-        <br></br>
-        <input
-          className="border-2 border-blue-600 rounded-lg"
+        <Input 
+          className="border-2 border-blue-600 rounded-lg p-1  m-3"
           type="email"
-          name="email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          placeholder=" New email"
+          changeHandler={(e) => setEmail(e.target.value)}
         />
-        <br></br>
-        <label htmlFor="password">Password:</label>
-        <br></br>
-        <input
-          className="border-2 border-blue-600 rounded-lg"
+        <Input
+          className="border-2 border-blue-600 rounded-lg p-1  m-3"
           type="password"
-          name="passwordHash"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          placeholder="New password"
+          changeHandler={(e) => setPassword(e.target.value)}
+          minLength={5}
         />
-        <br></br>
-        <input
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-10"
-          type="submit"
-          value="Submit"
+        <Input
+          className="border-2 border-blue-600 rounded-lg p-1  m-3"
+          type="password"
+          value={confirmPassword}
+          placeholder="Confirm password"
+          changeHandler={(e) => setConfirmPassword(e.target.value)}
+          minLength={5}
         />
+        {valid
+        ?
+          <Button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2"
+            type="submit"
+            text="Signup"
+            disabled={false}
+          />
+        :
+          <Button
+            className="bg-gray-500 text-white font-bold py-2 px-4 rounded mt-2"
+            type="submit"
+            text="Signup"
+            disabled={true}
+          />
+        }
       </form>
-    </>
+      <p className="p-5 text-sm">Have an account? <span className="text-blue-500 hover:text-blue-700 hover: cursor-pointer" onClick={() => navigate('/login')}>Log in</span></p>
+    </div>
   );
 };
 
-export default SignUp;
+export default Signup;

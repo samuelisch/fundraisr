@@ -3,11 +3,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import callApi from "./callApi";
 import Homepage from "./components/Homepage";
 import Navbar from "./components/Navbar";
-import LoginModal from "./components/LoginModal";
-import SignupModal from "./components/SignupModal";
 import CampaignList from "./components/CampaignList";
 import NewCampaign from "./components/NewCampaign";
 import SingleCampaign from "./components/SingleCampaign";
+import Login from "./components/Login";
+import Signup from "./components/Signup";
 
 export const UserContext = createContext();
 
@@ -49,11 +49,11 @@ const App = () => {
   return (
     <BrowserRouter>
       <UserContext.Provider value={{user, setUser}}>
-        <LoginModal />
-        <SignupModal />
         <Navbar />
         <Routes>
           <Route path="/" element={<Homepage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/campaigns" element={<CampaignList />} />
           <Route path="/campaigns/:id" element={<SingleCampaign />} />
           <Route path="/newcampaign" element={<NewCampaign />} />

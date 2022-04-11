@@ -3,8 +3,10 @@ import callApi from "../callApi";
 import Input from "./assets/Input";
 import Button from "./assets/Button";
 import { UserContext } from "../App";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const { setUser } = useContext(UserContext);
@@ -25,38 +27,36 @@ const Login = () => {
     //clears form
     setLoginEmail("");
     setLoginPassword("");
+    navigate('/')
   };
 
   return (
-    <div>
-      <h1 className="font-bold">Login Form</h1>
-      <form onSubmit={loginUser}>
+    <div className="flex flex-col items-center justify-center text-center">
+      <h1 className="font-bold text-2xl p-5">Login to Fundraisr</h1>
+      <form onSubmit={loginUser} className="flex flex-col items-center justify-center">
         <Input
           label="login-email"
           type="email"
           value={loginEmail}
           changeHandler={(e) => setLoginEmail(e.target.value)}
-          className="border-2 border-blue-600 rounded-lg"
+          className="border-2 border-blue-600 rounded-lg p-1 m-3"
           placeholder="E-mail"
         />
-        <br />
-        <br />
         <Input
           label="login-password"
           type="password"
           value={loginPassword}
           changeHandler={(e) => setLoginPassword(e.target.value)}
-          className="border-2 border-blue-600 rounded-lg"
+          className="border-2 border-blue-600 rounded-lg p-1 m-3"
           placeholder="Password"
         />
-        <br />
-        <br />
         <Button
           type="submit"
           text="Login"
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          className="bg-blue-500 text-lg hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded"
         />
       </form>
+      <p className="p-5 text-sm">New to Fundraisr? <span className="text-blue-500 hover:text-blue-700 hover: cursor-pointer" onClick={() => navigate('/signup')}>Sign up with us</span></p>
     </div>
   );
 };

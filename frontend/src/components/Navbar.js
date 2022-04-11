@@ -1,12 +1,11 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../App";
+import Button from "./assets/Button";
 
 const Navbar = () => {
   const {user, setUser} = useContext(UserContext);
   const navigate = useNavigate();
-
-  
 
   const logoutUser = () => {
     window.localStorage.removeItem("loggedUser");
@@ -58,12 +57,8 @@ const Navbar = () => {
           </>
         :
           <>
-            <label htmlFor="login" className="btn modal-button">
-              log in
-            </label>
-            <label htmlFor="signup" className="btn modal-button">
-              sign up
-            </label>
+            <Button type="button" className="btn" text="login" clickHandler={() => navigate('/login')} />
+            <Button type="button" className="btn" text="signup" clickHandler={() => navigate('/signup')} />
           </>
         }
       </div>
