@@ -25,7 +25,7 @@ const SingleCampaignModal = (props) => {
     }  
     
     //Calculation for progress bar
-    const currentPercent = ((props.selectedCampaign.amountDonated / props.selectedCampaign.amountTarget) * 100)
+    const currentPercent = Math.round((props.selectedCampaign.amountDonated / props.selectedCampaign.amountTarget) * 100)
 
     return (
     <>
@@ -39,12 +39,15 @@ const SingleCampaignModal = (props) => {
                     <div className="flex flex-col">
                         <img className='h-64 max-h-full px-6 pt-4 pb-2 rounded' src={testimg} alt="campaign"/>
                         <div className="px-6 pt-4 pb-2">
-                            <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">global</span>
-                             <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">family</span>
+                            {props.selectedCampaign.tags.map((element, index) => {
+                                return (
+                            <span key={index}className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{element}</span>
+                            )}
+                        )}
                         </div>
                     </div>
                     <div className="mb-8 px-6 pt-4 pb-2">
-                        <ProgressBar percentage={currentPercent}/>
+                        <ProgressBar percentage={currentPercent} target={props.selectedCampaign.amountTarget.toLocaleString("en-US")}/>
                         <div className="text-gray-900 font-bold text-xl mb-5">{props.selectedCampaign.title}</div>
                         <p className="text-gray-700 text-base mb-5">{props.selectedCampaign.description}</p>
                         <div className="custom-number-input h-10 w-32 flex flex-row">
