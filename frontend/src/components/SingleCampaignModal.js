@@ -53,7 +53,7 @@ const SingleCampaignModal = (props) => {
                         <div className="custom-number-input h-10 w-32 flex flex-row">
                             <label htmlFor="custom-input-number" className="w-full text-gray-700 text-sm font-semibold mr-5">Amount
                             </label>
-                            <div class="flex flex-row justify-around h-10 w-full rounded-lg relative bg-transparent mt-1">
+                            <div className="flex flex-row justify-around h-10 w-full rounded-lg relative bg-transparent mt-1">
                                 <button data-action="decrement" className="text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none border border-gray-500" onClick={handleSubtract}>
                                 <span className="m-auto text-2xl font-thin">−</span>
                                 </button>

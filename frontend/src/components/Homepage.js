@@ -117,7 +117,7 @@ const Homepage = () => {
         </form>
       </div>
       <NewCampaign />
-      <CampaignList campaignList={campaignList}selectedCampaign={selectedCampaign} setSelectedCampaign={setSelectedCampaign} singleCampaign={singleCampaign} showModal={showModal} setShowModal={setShowModal}/>
+      <CampaignList campaignList={campaignList} selectedCampaign={selectedCampaign} setSelectedCampaign={setSelectedCampaign} singleCampaign={singleCampaign} showModal={showModal} setShowModal={setShowModal}/>
       
       {showModal ? <SingleCampaignModal selectedCampaign={selectedCampaign} setSelectedCampaign={setSelectedCampaign} showModal={showModal} setShowModal={setShowModal}/> : null}
       
