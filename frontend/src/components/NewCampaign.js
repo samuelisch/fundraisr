@@ -26,15 +26,32 @@ const NewCampaign = () => {
   }
 
   return (
+    <>
+    <h1 className="font-bold">Create New Campaign</h1>
     <form onSubmit={submitHandler}>
-      <Input type="text" placeholder="Title" value={title} changeHandler={(e) => setTitle(e.target.value)} />
-      <Input type="text" placeholder="Description" value={description} changeHandler={(e) => setDescription(e.target.value)} />
-      <Input type="number" placeholder="Target amount" value={amountTarget} changeHandler={(e) => setAmountTarget(e.target.value)} />
-      <Input type="file" multiple={true} changeHandler={(e) => setImage(e.target.files[0])} />
+    <label htmlFor="title">Title:</label>
+        <br />
+      <Input className="border-2 border-blue-600 rounded-lg" type="text" placeholder="Title" value={title} changeHandler={(e) => setTitle(e.target.value)} />
+      <br />
+        <br />
+        <label htmlFor="description">Description:</label>
+        <br />
+      <Input className="border-2 border-blue-600 rounded-lg" type="text" placeholder="Description" value={description} changeHandler={(e) => setDescription(e.target.value)} />
+      <br />
+        <br />
+        <label htmlFor="target-amount">Target Amount:</label>
+        <br />
+      <Input className="border-2 border-blue-600 rounded-lg" type="number" placeholder="Target amount" value={amountTarget} changeHandler={(e) => setAmountTarget(e.target.value)} />
+       <br />
+       <br/>
+       <label htmlFor="upload-image">Upload Image:</label>
+       <br />
+        <Input type="file" multiple={true} changeHandler={(e) => setImage(e.target.files[0])} />
       <div className="form-group">
-        <Button className="btn" type="submit" text="Create" />
+        <Button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-10" type="submit" text="Create" />
       </div>
     </form>
+    </>
   );
 };
 

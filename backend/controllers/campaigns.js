@@ -72,6 +72,20 @@ campaignsRouter.put('/edit/:id', userExtractor, async (request, response) => {
   }
 })
 
+campaignsRouter.put('/edit/donation/:id', userExtractor, async (request, response) => {
+  const body = request.body;
+  const campaign = await Campaign.findById(request.params.id);
+  if (!campaign) {
+    response.status(404).end()
+  }
+  const updatedCampaign = await Campaign.findByIdAndUpdate(request.params.id, body, {new: true});
+  if (updatedCampaign) {
+  response.json(updatedCampaign)
+  } else {
+  response.status(401).send({ error: 'Unauthorised' });
+  }
+})
+
 campaignsRouter.delete('/:id', userExtractor, async (request, response) => {
   const user = request.user
   const userId = user._id.toString();
