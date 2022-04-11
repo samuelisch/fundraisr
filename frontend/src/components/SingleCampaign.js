@@ -3,7 +3,6 @@ import Button from "./assets/Button";
 import ProgressBar from "./assets/ProgressBar";
 import callApi from "../callApi";
 
-import testimg from "../components/assets/images/children-option1.jpg";
 import { useParams } from "react-router-dom";
 
 const SingleCampaign = () => {
@@ -61,7 +60,7 @@ const SingleCampaign = () => {
               <div className="flex flex-col">
                 <img
                   className="h-64 max-h-full px-6 pt-4 pb-2 rounded"
-                  src={testimg}
+                  src={selectedCampaign.image.url}
                   alt="campaign"
                 />
                 <div className="px-6 pt-4 pb-2">

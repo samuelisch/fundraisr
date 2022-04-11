@@ -36,16 +36,14 @@ const campaignSchema = mongoose.Schema({
       ref: 'User',
     }
   ],
-  images: [
-    {
-      url: {
-        type: String
-      },
-      id: {
-        type: String
-      }
+  images: {
+    url: {
+      type: String
+    },
+    id: {
+      type: String
     }
-  ],
+  },
   tags: [
     {
       type: String
