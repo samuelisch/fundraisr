@@ -92,29 +92,8 @@ const CampaignList = () => {
           type="button"
           className="inline-block px-6 py-2 border-2 border-blue-600 text-blue-600 font-medium text-xs leading-tight rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
           clickHandler={handleCategoryChange}
-          value="global"
-          text="Global"
-        />
-        <Button
-          type="button"
-          className="inline-block px-6 py-2 border-2 border-blue-600 text-blue-600 font-medium text-xs leading-tight rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
-          clickHandler={handleCategoryChange}
-          value="elderly"
-          text="Elderly"
-        />
-        <Button
-          type="button"
-          className="inline-block px-6 py-2 border-2 border-blue-600 text-blue-600 font-medium text-xs leading-tight rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
-          clickHandler={handleCategoryChange}
-          value="children"
-          text="Children"
-        />
-        <Button
-          type="button"
-          className="inline-block px-6 py-2 border-2 border-blue-600 text-blue-600 font-medium text-xs leading-tight rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
-          clickHandler={handleCategoryChange}
-          value="visually impaired"
-          text="Visually impaired"
+          value="animal"
+          text="Animal"
         />
         <Button
           type="button"
@@ -127,8 +106,36 @@ const CampaignList = () => {
           type="button"
           className="inline-block px-6 py-2 border-2 border-blue-600 text-blue-600 font-medium text-xs leading-tight rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
           clickHandler={handleCategoryChange}
+          value="children"
+          text="Children"
+        />
+        <Button
+          type="button"
+          className="inline-block px-6 py-2 border-2 border-blue-600 text-blue-600 font-medium text-xs leading-tight rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+          clickHandler={handleCategoryChange}
+          value="elderly"
+          text="Elderly"
+        />
+        <Button
+          type="button"
+          className="inline-block px-6 py-2 border-2 border-blue-600 text-blue-600 font-medium text-xs leading-tight rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+          clickHandler={handleCategoryChange}
+          value="global"
+          text="Global"
+        />
+        <Button
+          type="button"
+          className="inline-block px-6 py-2 border-2 border-blue-600 text-blue-600 font-medium text-xs leading-tight rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+          clickHandler={handleCategoryChange}
           value="nature"
           text="Nature"
+        />
+        <Button
+          type="button"
+          className="inline-block px-6 py-2 border-2 border-blue-600 text-blue-600 font-medium text-xs leading-tight rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+          clickHandler={handleCategoryChange}
+          value="visually impaired"
+          text="Visually impaired"
         />
       </div>
       <div className="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">

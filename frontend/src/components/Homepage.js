@@ -16,7 +16,7 @@ const Homepage = () => {
         I want to...
       </h1>
 
-      <div className="flex justify-around">
+      <div className="flex justify-evenly">
         <div className="relative">
           <img
             src={mainleft}
@@ -41,6 +41,7 @@ const Homepage = () => {
           />
         </div>
       </div>
+
     </div>
    
   );
