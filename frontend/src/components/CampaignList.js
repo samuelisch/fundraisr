@@ -25,9 +25,10 @@ const CampaignList = (props) => {
   };
 
   // maps over listToShow, already filtered according to selectedCategory
-  const viewList = listToShow.map((element, index) => {
+  const viewList = listToShow.map((element) => {
+      console.log(element)
     return (
-      <div className=" w-full lg:max-w-full lg:flex" key={index}>
+      <div className=" w-full lg:max-w-full lg:flex" key={element.id}>
         <div
           className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
           style={{ backgroundImage: `url(${testimg})` }}
