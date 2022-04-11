@@ -4,26 +4,16 @@ import callApi from "../callApi";
 import mainleft from "../components/assets/images/mainleft.jpg";
 import mainright from "../components/assets/images/mainright.jpg";
 import Button from "./assets/Button";
-import CampaignList from "./CampaignList";
-import SingleCampaignModal from "./SingleCampaignModal";
 
 const Homepage = () => {
   const navigate = useNavigate();
   const [usersList, setUsersList] = useState([]);
-  const [selectedCampaign, setSelectedCampaign] = useState({})
-  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     if (usersList.length) {
       console.log(usersList);
     }
   }, [usersList]);
-
-  useEffect(() => {
-    if (selectedCampaign) {
-      console.log(selectedCampaign);
-    }
-  }, [selectedCampaign]);
 
   const allUsers = async (event) => {
     event.preventDefault();
@@ -36,13 +26,6 @@ const Homepage = () => {
     const singleUserData = await callApi.singleUser(id);
     console.log(singleUserData);
   };
-  
-  const singleCampaign = async (event, id) => {
-    event.preventDefault();
-    const singleCampaignData = await callApi.singleCampaign(id);
-    setSelectedCampaign(singleCampaignData)
-    setShowModal(true)
-    };
 
   return (
     <div>
@@ -96,19 +79,7 @@ const Homepage = () => {
             Single User
           </button>
         </form>
-        <form onSubmit={(e) => singleCampaign(e, "624ff26987b87cf280b74bca")}>
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            type="submit"
-          >
-            Single Campaign
-          </button>
-        </form>
       </div>
-      <CampaignList selectedCampaign={selectedCampaign} setSelectedCampaign={setSelectedCampaign} singleCampaign={singleCampaign} showModal={showModal} setShowModal={setShowModal}/>
-      
-      {showModal ? <SingleCampaignModal selectedCampaign={selectedCampaign} setSelectedCampaign={setSelectedCampaign} showModal={showModal} setShowModal={setShowModal}/> : null}
-      
     </div>
    
   );

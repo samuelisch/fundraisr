@@ -3,9 +3,11 @@ import ProgressBar from "./assets/ProgressBar";
 import testimg from "../components/assets/images/children-option1.jpg";
 import { FaAngleDoubleRight } from "react-icons/fa";
 import Button from "./assets/Button";
-import callApi from '../callApi';
+import callApi from "../callApi";
+import { useNavigate } from "react-router-dom";
 
-const CampaignList = (props) => {
+const CampaignList = () => {
+  const navigate = useNavigate();
   const [campaignList, setCampaignList] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null); // filter
   const [listToShow, setListToShow] = useState([]); // state of campaigns according to filter
@@ -56,7 +58,7 @@ const CampaignList = (props) => {
             className="bg-grey-lighter p-3 flex items-end justify-end transition hover:bg-grey-light"
             data-bs-toggle="modal"
             data-bs-target="#singlecampaign"
-            onClick={(e) => props.singleCampaign(e, element.id)}
+            onClick={() => navigate(`/campaigns/${element.id}`)}
           >
             See More&nbsp;
             <FaAngleDoubleRight />
@@ -67,7 +69,7 @@ const CampaignList = (props) => {
   });
 
   if (!campaignList.length) {
-      return null;
+    return null;
   }
 
   return (

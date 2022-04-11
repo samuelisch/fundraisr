@@ -7,6 +7,7 @@ import LoginModal from "./components/LoginModal";
 import SignupModal from "./components/SignupModal";
 import CampaignList from "./components/CampaignList";
 import NewCampaign from "./components/NewCampaign";
+import SingleCampaign from "./components/SingleCampaign";
 
 const App = () => {
   return (
@@ -17,7 +18,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/campaigns" element={<CampaignList />} />
-        {/* <Route path="/campaigns/:id" element={<SingleCampaign />} /> */}
+        <Route path="/campaigns/:id" element={<SingleCampaign />} />
         <Route path="/newcampaign" element={<NewCampaign />} />
       </Routes>
     </BrowserRouter>
