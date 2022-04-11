@@ -57,8 +57,8 @@ const Navbar = () => {
           </>
         :
           <>
-            <Button type="button" className="btn" text="login" clickHandler={() => navigate('/login')} />
-            <Button type="button" className="btn" text="signup" clickHandler={() => navigate('/signup')} />
+            <Button type="button" className="btn rounded-md bg-blue-500 hover:bg-blue-600 border-none" text="login" clickHandler={() => navigate('/login')} />
+            <Button type="button" className="btn rounded-md bg-blue-500 hover:bg-blue-600 border-none" text="signup" clickHandler={() => navigate('/signup')} />
           </>
         }
       </div>
