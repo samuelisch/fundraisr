@@ -75,7 +75,7 @@ const CampaignList = () => {
   }
 
   if (!campaignList.length) {
-    return <h1>No campaigns available! Consider starting one</h1>;
+    return <p className="text-xl text-center mt-5">No campaigns in process! Consider starting one</p>;
   }
 
   return (
