@@ -12,17 +12,17 @@ const NewCampaign = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append('file', image);
+    formData.append('files', image);
     formData.append('title', title);
     formData.append('description', description);
     formData.append('amountTarget', amountTarget);
 
-    const createdCampaign = await server.createCampaign(formData)
+    const createdCampaign = await server.createCampaign(formData);
     console.log(createdCampaign);
     setTitle('');
     setDescription('');
     setAmountTarget('');
-    setImage('');
+    setImage([]);
   }
 
   return (

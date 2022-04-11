@@ -3,22 +3,30 @@ import ProgressBar from "./assets/ProgressBar";
 import testimg from "../components/assets/images/children-option1.jpg";
 import { FaAngleDoubleRight } from "react-icons/fa";
 import Button from "./assets/Button";
+import callApi from '../callApi';
 
 const CampaignList = (props) => {
+  const [campaignList, setCampaignList] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null); // filter
   const [listToShow, setListToShow] = useState([]); // state of campaigns according to filter
+
+  useEffect(() => {
+    callApi.allCampaigns().then((data) => {
+      setCampaignList(data);
+    });
+  }, []);
 
   // will run when selectedCat changes, or campaignList changes
   useEffect(() => {
     if (selectedCategory) {
-      const filteredList = props.campaignList.filter((campaign) =>
+      const filteredList = campaignList.filter((campaign) =>
         campaign.tags.includes(selectedCategory)
       );
       setListToShow(filteredList);
     } else {
-      setListToShow(props.campaignList);
+      setListToShow(campaignList);
     }
-  }, [selectedCategory, props.campaignList]);
+  }, [selectedCategory, campaignList]);
 
   const handleCategoryChange = (event) => {
     setSelectedCategory(event.target.value);
@@ -26,7 +34,6 @@ const CampaignList = (props) => {
 
   // maps over listToShow, already filtered according to selectedCategory
   const viewList = listToShow.map((element) => {
-      console.log(element)
     return (
       <div className=" w-full lg:max-w-full lg:flex" key={element.id}>
         <div
@@ -58,6 +65,10 @@ const CampaignList = (props) => {
       </div>
     );
   });
+
+  if (!campaignList.length) {
+      return null;
+  }
 
   return (
     <>

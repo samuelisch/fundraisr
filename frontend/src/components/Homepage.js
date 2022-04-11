@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import callApi from "../callApi";
 import mainleft from "../components/assets/images/mainleft.jpg";
 import mainright from "../components/assets/images/mainright.jpg";
 import Button from "./assets/Button";
 import CampaignList from "./CampaignList";
-import NewCampaign from "./NewCampaign";
 import SingleCampaignModal from "./SingleCampaignModal";
 
 const Homepage = () => {
+  const navigate = useNavigate();
   const [usersList, setUsersList] = useState([]);
-  const [campaignList, setCampaignList] = useState([]);
   const [selectedCampaign, setSelectedCampaign] = useState({})
   const [showModal, setShowModal] = useState(false);
 
@@ -18,12 +18,6 @@ const Homepage = () => {
       console.log(usersList);
     }
   }, [usersList]);
-
-  useEffect(() => {
-    if (campaignList.length) {
-      console.log(campaignList);
-    }
-  }, [campaignList]);
 
   useEffect(() => {
     if (selectedCampaign) {
@@ -41,12 +35,6 @@ const Homepage = () => {
     event.preventDefault();
     const singleUserData = await callApi.singleUser(id);
     console.log(singleUserData);
-  };
-
-  const allCampaigns = async (event) => {
-    event.preventDefault();
-    const allCampaignsData = await callApi.allCampaigns();
-    setCampaignList(allCampaignsData);
   };
   
   const singleCampaign = async (event, id) => {
@@ -76,7 +64,7 @@ const Homepage = () => {
             type="button"
             text="Donate"
             className="h-10 px-5 bg-white text-blue-700 transition-colors duration-150 rounded-lg focus:shadow-outline hover:bg-blue-500 hover:text-blue-100 absolute font-bold left-5 top-5"
-            clickHandler={allCampaigns}
+            clickHandler={() => navigate("/campaigns")}
           />
         </div>
 
@@ -86,6 +74,7 @@ const Homepage = () => {
             type="button"
             text="Start a Campaign"
             className="h-10 px-5 bg-white text-blue-700 transition-colors duration-150 rounded-lg focus:shadow-outline hover:bg-blue-500 hover:text-blue-100 absolute font-bold left-5 top-5"
+            clickHandler={() => navigate('/newcampaign')}
           />
         </div>
       </div>
@@ -116,8 +105,7 @@ const Homepage = () => {
           </button>
         </form>
       </div>
-      <NewCampaign />
-      <CampaignList campaignList={campaignList} selectedCampaign={selectedCampaign} setSelectedCampaign={setSelectedCampaign} singleCampaign={singleCampaign} showModal={showModal} setShowModal={setShowModal}/>
+      <CampaignList selectedCampaign={selectedCampaign} setSelectedCampaign={setSelectedCampaign} singleCampaign={singleCampaign} showModal={showModal} setShowModal={setShowModal}/>
       
       {showModal ? <SingleCampaignModal selectedCampaign={selectedCampaign} setSelectedCampaign={setSelectedCampaign} showModal={showModal} setShowModal={setShowModal}/> : null}
       

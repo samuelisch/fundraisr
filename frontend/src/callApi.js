@@ -23,7 +23,7 @@ const singleUser = async (id) => {
     headers: { Authorization: token },
   };
 
-  const response = await axios.get(`${baseURL}/users/${id}`, config);
+  const response = await axios.get(`${baseURL}/users/edit/${id}`, config);
   return response.data;
 };
 

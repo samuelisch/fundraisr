@@ -20,7 +20,7 @@ campaignsRouter.get("/:id", async (request, response) => {
   }
 })
 
-campaignsRouter.post('/', userExtractor, upload.array('file'), async (request, response) => {
+campaignsRouter.post('/', userExtractor, upload.array('files'), async (request, response) => {
   const uploader = async (path) => await cloudinary.uploads(path, 'fundraisr');
 
   const body = request.body;
