@@ -26,16 +26,18 @@ const userSchema = new mongoose.Schema({
       ref: 'Campaign'
     }
   ],
-  campaignsDonated: [
+  donations: [
     {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Campaign'
-    }
+      campaign: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Campaign'
+      },
+      amount: {
+        type: Number,
+        min: 1,
+      }
+    },
   ],
-  amountDonated: {
-    type: Number,
-    default: 0
-  },
   isAdmin: {
     type: Boolean,
     default: false
