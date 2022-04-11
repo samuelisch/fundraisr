@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import server from "../callApi";
 import Button from "./assets/Button";
 import Input from "./assets/Input";
