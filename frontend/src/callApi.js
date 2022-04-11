@@ -5,12 +5,13 @@ const baseURL = "http://localhost:5001/api";
 let token = null;
 
 const setToken = (newToken) => {
-    token = `bearer ${newToken}`
-}
+  token = `bearer ${newToken}`;
+};
 
 //Login
 const userLogin = async (credentials) => {
   const response = await axios.post(`${baseURL}/login`, credentials);
+  console.log(response.token);
   return response.data;
 };
 

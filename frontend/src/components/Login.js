@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import callApi from "../callApi";
 import Input from "./assets/Input";
 import Button from "./assets/Button";
+import { UserContext } from "../App";
 
 const Login = () => {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+  const { setUser } = useContext(UserContext);
 
   const loginUser = async (e) => {
     e.preventDefault();
@@ -18,6 +20,7 @@ const Login = () => {
     callApi.setToken(loginData.token)
     //set token to localStorage
     window.localStorage.setItem('loggedUser', JSON.stringify(loginData));
+    setUser(loginData)
     console.log('logged in!');
     //clears form
     setLoginEmail("");

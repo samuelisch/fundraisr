@@ -11,10 +11,12 @@ const CampaignList = () => {
   const [campaignList, setCampaignList] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null); // filter
   const [listToShow, setListToShow] = useState([]); // state of campaigns according to filter
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     callApi.allCampaigns().then((data) => {
       setCampaignList(data);
+      setLoaded(true);
     });
   }, []);
 
@@ -68,8 +70,12 @@ const CampaignList = () => {
     );
   });
 
-  if (!campaignList.length) {
+  if (!loaded) {
     return null;
+  }
+
+  if (!campaignList.length) {
+    return <h1>No campaigns available! Consider starting one</h1>;
   }
 
   return (
