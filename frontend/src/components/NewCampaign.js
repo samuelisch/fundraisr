@@ -73,12 +73,12 @@ console.log(tags)
         <br/>
       <label htmlFor="end-date">End Date:</label>
         <br />
-        <Input className="border-2 border-blue-600 rounded-lg" type="date" min={tomorrowuse} value={dateEnd}changeHandler={(e) => setDateEnd(e.target.value)} />
+        <Input className="border-2 border-blue-600 rounded-lg" type="date" min={tomorrowuse} value={dateEnd} changeHandler={(e) => setDateEnd(e.target.value)} />
         <br />
         <br/>
       <label htmlFor="upload-image">Upload Image:</label>
         <br />
-        <Input type="file" multiple={true} value={image} changeHandler={(e) => setImage(e.target.files[0])} />
+        <Input type="file" multiple={true} changeHandler={(e) => setImage(e.target.files[0])} />
         <br/>
         <br/>
       <label htmlFor="tags">Tags:</label>

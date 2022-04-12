@@ -42,7 +42,8 @@ campaignsRouter.post('/', userExtractor, upload.array('files'), async (request, 
     amountTarget: body.amountTarget,
     dateStart: new Date().toISOString(),
     dateEnd: body.dateEnd,
-    image: url
+    image: url,
+    tags: body.tags
     // dateEnd
   })
 
