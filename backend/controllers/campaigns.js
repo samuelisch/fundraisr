@@ -22,10 +22,10 @@ campaignsRouter.get("/:id", async (request, response) => {
 
 campaignsRouter.post('/', userExtractor, upload.array('files'), async (request, response) => {
   const uploader = async (path) => await cloudinary.uploads(path, 'fundraisr');
-
+  console.log('a')
   const body = request.body;
   const user = request.user;
-
+  console.log('b')
   let url;
   const files = request.files;
   for (const file of files) {
@@ -34,7 +34,7 @@ campaignsRouter.post('/', userExtractor, upload.array('files'), async (request, 
     url = newPath;
     fs.unlinkSync(path);
   }
-  console.log(url)
+  console.log('url',url)
   const campaign = new Campaign ({
     title: body.title,
     description: body.description,
@@ -73,29 +73,56 @@ campaignsRouter.put('/edit/:id', userExtractor, async (request, response) => {
   }
 })
 
+// campaignsRouter.put('/edit/donation/:id', userExtractor, async (request, response) => {
+  
+//   const body = request.body;
+//   const userId = request.user._id.toString();
+//   console.log('here')
+//   const userDonated = request.body.amountDonated;
+  
+//   const campaign = await Campaign.findById(request.params.id);
+//   if (!campaign) {
+//     if (!campaign) {
+//     response.status(404).end()
+//   }
+//   const updatedCampaign = await Campaign.findByIdAndUpdate(request.params.id, body, {new: true});
+//   if (updatedCampaign) {
+//   response.json(updatedCampaign)
+//   } else {
+//   response.status(401).send({ error: 'Unauthorised' });
+//   }
+//     }
+//     console.log('here2')
+//     const updatedCampaign = await Campaign.findByIdAndUpdate(request.params.id, {donors: userId, $inc: {amountDonated: +userDonated} }, {new: true});
+//     console.log('here3')
+    
+//     const updatedUser = await User.findByIdAndUpdate(userId, {campaignDonated: request.params.id, amountDonated: userDonated}, {new: true});
+//   // }
+  
+//   if (updatedCampaign && updatedUser) {
+//     response.json(updatedCampaign)
+//     } else {
+//     response.status(401).send({ error: 'Unauthorised' });
+//     }
+// })
+
+
+
 campaignsRouter.put('/edit/donation/:id', userExtractor, async (request, response) => {
   
-  const body = request.body;
   const userId = request.user._id.toString();
-  console.log('here')
+  console.log(request.body.amountDonated)
   const userDonated = request.body.amountDonated;
+  
   const campaign = await Campaign.findById(request.params.id);
   if (!campaign) {
-    if (!campaign) {
     response.status(404).end()
   }
-  const updatedCampaign = await Campaign.findByIdAndUpdate(request.params.id, body, {new: true});
-  if (updatedCampaign) {
-  response.json(updatedCampaign)
-  } else {
-  response.status(401).send({ error: 'Unauthorised' });
-  }
-    }
-    console.log('here2')
-    const updatedCampaign = await Campaign.findByIdAndUpdate(request.params.id, {donors: userId, $inc: {amountDonated: +userDonated} }, {new: true});
+
+  const updatedCampaign = await Campaign.findByIdAndUpdate(request.params.id, {$push: {donors: userId}, $inc: {amountDonated: +userDonated} }, {new: true});
     console.log('here3')
     
-    const updatedUser = await User.findByIdAndUpdate(userId, {campaignDonated: request.params.id, amountDonated: userDonated}, {new: true});
+  const updatedUser = await User.findByIdAndUpdate(userId, {$push: {donations: {campaign: request.params.id, amount: userDonated}}}, {new: true});
   // }
   
   if (updatedCampaign && updatedUser) {
@@ -105,20 +132,6 @@ campaignsRouter.put('/edit/donation/:id', userExtractor, async (request, respons
     }
 })
 
-
-// campaignsRouter.put('/edit/donation/:id', userExtractor, async (request, response) => {
-//   const body = request.body;
-//   const campaign = await Campaign.findById(request.params.id);
-//   if (!campaign) {
-//     response.status(404).end()
-//   }
-//   const updatedCampaign = await Campaign.findByIdAndUpdate(request.params.id, body, {new: true});
-//   if (updatedCampaign) {
-//   response.json(updatedCampaign)
-//   } else {
-//   response.status(401).send({ error: 'Unauthorised' });
-//   }
-// })
 
 campaignsRouter.delete('/:id', userExtractor, async (request, response) => {
   const user = request.user
