@@ -38,7 +38,6 @@ const NewCampaign = () => {
       event.target.className = "bg-blue-600 inline-block px-6 py-2 border-2 border-blue-600 text-white font-medium text-xs leading-tight rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out";      
       setTags((prevState) => {
       return [...prevState, event.target.value]
-
     })} else {
       event.target.className = "inline-block px-6 py-2 border-2 border-blue-600 text-blue-600 font-medium text-xs leading-tight rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out";
       const tagsArr = tags.filter((element) => element !== event.target.value)
@@ -47,6 +46,11 @@ const NewCampaign = () => {
   }
 
 console.log(tags)
+
+  let today = new Date()
+  let tomorrow = new Date() 
+  tomorrow.setDate(today.getDate() + 1)
+  let tomorrowuse = tomorrow.toLocaleDateString('eng-ca')
 
   return (
     <>
@@ -69,12 +73,12 @@ console.log(tags)
         <br/>
       <label htmlFor="end-date">End Date:</label>
         <br />
-        <Input className="border-2 border-blue-600 rounded-lg" type="date" value={dateEnd}changeHandler={(e) => setDateEnd(e.target.value)} />
+        <Input className="border-2 border-blue-600 rounded-lg" type="date" min={tomorrowuse} value={dateEnd}changeHandler={(e) => setDateEnd(e.target.value)} />
         <br />
         <br/>
       <label htmlFor="upload-image">Upload Image:</label>
         <br />
-        <Input type="file" multiple={true} changeHandler={(e) => setImage(e.target.files[0])} />
+        <Input type="file" multiple={true} value={image} changeHandler={(e) => setImage(e.target.files[0])} />
         <br/>
         <br/>
       <label htmlFor="tags">Tags:</label>
@@ -95,7 +99,7 @@ console.log(tags)
           />
           <Button
             type="button"
-            className={`${buttonStyle}`}
+            className={buttonStyle}
             clickHandler={handleTagsChange}
             value="children"
             text="Children"

@@ -9,7 +9,8 @@ const Input = ({
   label,
   placeholder,
   multiple,
-  minLength
+  minLength,
+  min
 }) => {
   return (
     <input
@@ -23,6 +24,7 @@ const Input = ({
       placeholder={placeholder}
       multiple={multiple}
       minLength={minLength}
+      min={min}
     />
   );
 };

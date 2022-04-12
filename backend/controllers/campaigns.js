@@ -26,22 +26,23 @@ campaignsRouter.post('/', userExtractor, upload.array('files'), async (request, 
   const body = request.body;
   const user = request.user;
 
-  const urls = [];
+  let url;
   const files = request.files;
   for (const file of files) {
     const { path } = file;
     const newPath = await uploader(path)
-    urls.push(newPath);
+    url = newPath;
     fs.unlinkSync(path);
   }
-
+  console.log(url)
   const campaign = new Campaign ({
     title: body.title,
     description: body.description,
     userCreated: user._id.toString(),
     amountTarget: body.amountTarget,
     dateStart: new Date().toISOString(),
-    images: urls
+    dateEnd: body.dateEnd,
+    image: url
     // dateEnd
   })
 

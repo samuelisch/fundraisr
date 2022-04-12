@@ -14,7 +14,6 @@ const SingleCampaign = () => {
   useEffect(() => {
     if (id) {
       callApi.singleCampaign(id).then((data) => {
-        console.log(data);
         setSelectedCampaign(data);
       });
     }

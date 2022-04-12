@@ -36,7 +36,7 @@ const campaignSchema = mongoose.Schema({
       ref: 'User',
     }
   ],
-  images: {
+  image: {
     url: {
       type: String
     },
