@@ -72,6 +72,20 @@ const createCampaign = async (formData) => {
   return response.data;
 };
 
+const donateCampaign = async (id, amountDonated) => {
+  const config = {
+    headers: { Authorization: token },
+  };
+  
+  const response = await axios.put(
+    `${baseURL}/campaigns/edit/donation/${id}`,
+    {amountDonated},
+    config
+  );
+  return response.data;
+}
+
+
 const updateCampaign = async (id, updateObj) => {
   const config = {
     headers: { Authorization: token },
@@ -96,6 +110,7 @@ const server = {
   createCampaign,
   updateCampaign,
   setToken,
+  donateCampaign
 };
 
 export default server;
