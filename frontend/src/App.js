@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import callApi from "./callApi";
 import Homepage from "./components/Homepage";
 import Navbar from "./components/Navbar";
@@ -8,6 +8,7 @@ import NewCampaign from "./components/NewCampaign";
 import SingleCampaign from "./components/SingleCampaign";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import ProtectedRoute from "./ProtectedRoute";
 
 export const UserContext = createContext();
 
@@ -27,7 +28,6 @@ const App = () => {
           setLoaded(true);
         })
         .catch((error) => {
-          console.error("login error", error);
           window.localStorage.removeItem("loggedUser");
           setLoaded(true);
         });
@@ -52,12 +52,21 @@ const App = () => {
         <Navbar />
         <Routes>
           <Route path="/" element={<Homepage />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login />} /> 
           <Route path="/signup" element={<Signup />} />
           <Route path="/campaigns" element={<CampaignList />} />
           <Route path="/campaigns/:id" element={<SingleCampaign />} />
-          <Route path="/newcampaign" element={<NewCampaign />} />
+          <Route path="/newcampaign" element={
+            <ProtectedRoute>
+              <NewCampaign />
+            </ProtectedRoute>
+            } 
+          />
           {/* <Route path="/profile/:id" element={<UserProfile />} /> */}
+          <Route
+            path="*"
+            element={<Navigate to="/" replace />}
+          />
         </Routes>
       </UserContext.Provider>
     </BrowserRouter>

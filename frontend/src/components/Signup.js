@@ -11,6 +11,14 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [valid, setValid] = useState(false);
+  const authenticated = window.localStorage.getItem('loggedUser')
+
+  useEffect(() => {
+    if (authenticated) {
+      console.log('checking')
+      navigate('/')
+    }
+  }, [authenticated, navigate])
 
   useEffect(() => {
     if (confirmPassword !== "" && confirmPassword === password) {

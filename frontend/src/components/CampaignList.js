@@ -56,13 +56,14 @@ const CampaignList = () => {
             />
           </div>
           <div
-            className="bg-grey-lighter p-3 flex items-end justify-end transition hover:bg-grey-light"
-            data-bs-toggle="modal"
-            data-bs-target="#singlecampaign"
-            onClick={() => navigate(`/campaigns/${element.id}`)}
+            className="bg-grey-lighter p-3 flex items-center justify-end transition hover:bg-grey-light"
           >
-            See More&nbsp;
-            <FaAngleDoubleRight />
+            <div className="flex items-center justify-end">
+              <span className="hover:cursor-pointer" onClick={() => navigate(`/campaigns/${element.id}`)}>
+                See More&nbsp;
+              </span>
+              <FaAngleDoubleRight />
+            </div>
           </div>
         </div>
       </div>

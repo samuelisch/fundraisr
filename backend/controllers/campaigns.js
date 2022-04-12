@@ -43,8 +43,7 @@ campaignsRouter.post('/', userExtractor, upload.array('files'), async (request, 
     dateStart: new Date().toISOString(),
     dateEnd: body.dateEnd,
     image: url,
-    tags: body.tags
-    // dateEnd
+    tags: body.tags.split(',')
   })
 
   const savedCampaign = await campaign.save()

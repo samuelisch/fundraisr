@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import callApi from "../callApi";
 import Input from "./assets/Input";
 import Button from "./assets/Button";
@@ -10,6 +10,14 @@ const Login = () => {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const { setUser } = useContext(UserContext);
+  const authenticated = window.localStorage.getItem('loggedUser')
+
+  useEffect(() => {
+    if (authenticated) {
+      console.log('checking')
+      navigate('/')
+    }
+  }, [authenticated, navigate])
 
   const loginUser = async (e) => {
     e.preventDefault();
