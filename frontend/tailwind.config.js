@@ -1,7 +1,5 @@
 module.exports = {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-  ],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {},
   },
@@ -12,7 +10,7 @@ module.exports = {
       {
         light: {
           ...require("daisyui/src/colors/themes")["[data-theme=corporate]"],
-          primary: '#2bcfc9',
+          primary: "#2bcfc9",
           // "primary-focus": "mediumblue",
         },
       },
@@ -24,4 +22,4 @@ module.exports = {
     prefix: "",
     darkTheme: "dark",
   },
-}
+};

@@ -5,29 +5,28 @@ import Button from "./assets/Button";
 import Input from "./assets/Input";
 
 const Signup = () => {
-  
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [valid, setValid] = useState(false);
-  const authenticated = window.localStorage.getItem('loggedUser')
+  const authenticated = window.localStorage.getItem("loggedUser");
 
   useEffect(() => {
     if (authenticated) {
-      console.log('checking')
-      navigate('/')
+      console.log("checking");
+      navigate("/");
     }
-  }, [authenticated, navigate])
+  }, [authenticated, navigate]);
 
   useEffect(() => {
     if (confirmPassword !== "" && confirmPassword === password) {
-      setValid(true)
+      setValid(true);
     } else {
-      setValid(false)
+      setValid(false);
     }
-  }, [confirmPassword, password])
+  }, [confirmPassword, password]);
 
   const createUser = async (e) => {
     e.preventDefault();
@@ -37,7 +36,7 @@ const Signup = () => {
       setName("");
       setEmail("");
       setPassword("");
-      navigate('/login')
+      navigate("/login");
     } catch (err) {
       console.error(err);
       setPassword("");
@@ -46,8 +45,13 @@ const Signup = () => {
 
   return (
     <div className="flex-col items-center justify-center text-center">
-      <h1 className="font-bold text-2xl p-5 text-gray-700">Sign up with Fundraisr</h1>
-      <form onSubmit={createUser} className="flex flex-col items-center justify-center">
+      <h1 className="font-bold text-2xl p-5 text-gray-700">
+        Sign up with Fundraisr
+      </h1>
+      <form
+        onSubmit={createUser}
+        className="flex flex-col items-center justify-center"
+      >
         <Input
           type="text"
           value={name}
@@ -55,7 +59,7 @@ const Signup = () => {
           changeHandler={(e) => setName(e.target.value)}
           minLength={2}
         />
-        <Input 
+        <Input
           type="email"
           value={email}
           placeholder="Email"
@@ -76,24 +80,31 @@ const Signup = () => {
           changeHandler={(e) => setConfirmPassword(e.target.value)}
           minLength={5}
         />
-        {valid
-        ?
+        {valid ? (
           <Button
             className="btn rounded-lg bg-primary hover:bg-primary/70 border-none text-white normal-case"
             type="submit"
             text="Sign up"
             disabled={false}
           />
-        :
+        ) : (
           <Button
             className="btn rounded-lg bg-gray-100  border-none text-white normal-case"
             type="submit"
             text="Sign up"
             disabled={true}
           />
-        }
+        )}
       </form>
-      <p className="p-5 text-sm">Have an account? <span className="text-primary hover:text-primary hover: cursor-pointer" onClick={() => navigate('/login')}>Log in</span></p>
+      <p className="p-5 text-sm">
+        Have an account?{" "}
+        <span
+          className="text-primary hover:text-primary hover: cursor-pointer"
+          onClick={() => navigate("/login")}
+        >
+          Log in
+        </span>
+      </p>
     </div>
   );
 };

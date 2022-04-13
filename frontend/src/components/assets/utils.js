@@ -1,7 +1,7 @@
 // FILE FOR UTILITY FUNCTIONS
 
 export function getNumberOfDays(end) {
-  const date1 = new Date (new Date().toLocaleDateString('eng-ca'));
+  const date1 = new Date(new Date().toLocaleDateString("eng-ca"));
   const date2 = new Date(end);
   // One day in milliseconds
   const oneDay = 1000 * 60 * 60 * 24;

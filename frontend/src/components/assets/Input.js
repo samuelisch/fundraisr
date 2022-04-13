@@ -10,7 +10,7 @@ const Input = ({
   placeholder,
   multiple,
   minLength,
-  min
+  min,
 }) => {
   return (
     <input

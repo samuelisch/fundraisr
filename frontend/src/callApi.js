@@ -62,7 +62,7 @@ const updatePassword = async (userId, passwordObj) => {
     passwordObj,
     config
   );
-  return response.data
+  return response.data;
 };
 
 //Campaign

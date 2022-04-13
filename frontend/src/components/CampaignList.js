@@ -28,19 +28,25 @@ const CampaignList = () => {
     }
   }, [selectedCategory, campaignList]);
 
-  let buttonStyle = "inline-block px-3 py-1 border border-gray-400 text-gray-400 normal-case leading-tight rounded-full hover:bg-gray-100  focus:outline-none focus:ring-0 transition duration-150 ease-in-out font-bold"
-  
+  let buttonStyle =
+    "inline-block px-3 py-1 border border-gray-400 text-gray-400 normal-case leading-tight rounded-full hover:bg-gray-100  focus:outline-none focus:ring-0 transition duration-150 ease-in-out font-bold";
+
   const handleCategoryChange = (event) => {
     setSelectedCategory(event.target.value);
-       
   };
 
   // maps over listToShow, already filtered according to selectedCategory
   const viewList = listToShow.map((element) => {
     return (
-      <Card key={element.id} id={element.id} imageURL={element.image.url} title={element.title} amountDonated={element.amountDonated} amountTarget={element.amountTarget} dateEnd={element.dateEnd}
+      <Card
+        key={element.id}
+        id={element.id}
+        imageURL={element.image.url}
+        title={element.title}
+        amountDonated={element.amountDonated}
+        amountTarget={element.amountTarget}
+        dateEnd={element.dateEnd}
       />
-
     );
   });
 
@@ -49,7 +55,11 @@ const CampaignList = () => {
   }
 
   if (!campaignList.length) {
-    return <p className="text-xl text-center mt-5">No campaigns in process! Consider starting one</p>;
+    return (
+      <p className="text-xl text-center mt-5">
+        No campaigns in process! Consider starting one
+      </p>
+    );
   }
 
   return (
@@ -110,6 +120,13 @@ const CampaignList = () => {
           clickHandler={handleCategoryChange}
           value="visually impaired"
           text="Visually impaired"
+        />
+        <Button
+          type="button"
+          className={buttonStyle}
+          clickHandler={handleCategoryChange}
+          value="others"
+          text="Others"
         />
       </div>
       <div className="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">

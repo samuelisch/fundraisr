@@ -1,17 +1,16 @@
-import React, {useContext } from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../App";
 import Button from "./assets/Button";
 
 const Navbar = () => {
-  
-  const {user, setUser} = useContext(UserContext);
- 
+  const { user, setUser } = useContext(UserContext);
+
   const navigate = useNavigate();
 
   const logoutUser = () => {
     window.localStorage.removeItem("loggedUser");
-    setUser(null)
+    setUser(null);
     navigate("/");
   };
 
@@ -23,8 +22,7 @@ const Navbar = () => {
         </a>
       </div>
       <div className="flex-none gap-2">
-        {user
-        ?
+        {user ? (
           <>
             <div className="dropdown dropdown-end">
               <button className="btn btn-square btn-ghost">
@@ -47,9 +45,7 @@ const Navbar = () => {
                 className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
               >
                 <li>
-                  <span onClick={() => navigate(`/profile`)}>
-                    Profile
-                  </span>
+                  <span onClick={() => navigate(`/profile`)}>Profile</span>
                 </li>
                 <li>
                   <span onClick={logoutUser}>Logout</span>
@@ -57,12 +53,22 @@ const Navbar = () => {
               </ul>
             </div>
           </>
-        :
+        ) : (
           <>
-            <Button type="button" className="btn rounded-lg bg-primary hover:bg-primary/70 border-none text-white normal-case" text="Login" clickHandler={() => navigate('/login')} />
-            <Button type="button" className="btn rounded-lg text-primary normal-case bg-white border-primary hover:bg-primary/30 hover:border-primary/20" text="Sign up" clickHandler={() => navigate('/signup')} />
+            <Button
+              type="button"
+              className="btn rounded-lg bg-primary hover:bg-primary/70 border-none text-white normal-case"
+              text="Login"
+              clickHandler={() => navigate("/login")}
+            />
+            <Button
+              type="button"
+              className="btn rounded-lg text-primary normal-case bg-white border-primary hover:bg-primary/30 hover:border-primary/20"
+              text="Sign up"
+              clickHandler={() => navigate("/signup")}
+            />
           </>
-        }
+        )}
       </div>
     </div>
   );

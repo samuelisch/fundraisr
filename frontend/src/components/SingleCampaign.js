@@ -10,9 +10,8 @@ import { useParams } from "react-router-dom";
 import DonateSuccessModal from "./DonateSuccessModal";
 
 const SingleCampaign = () => {
-  
   const navigate = useNavigate();
-  
+
   const { id } = useParams();
   const [selectedCampaign, setSelectedCampaign] = useState(null);
   const [currentPercent, setCurrentPercent] = useState(0);
@@ -40,18 +39,18 @@ const SingleCampaign = () => {
   //Functions for Amount to Donate
   const handleSubtract = () => {
     if (donateAmt > 0) {
-      const newAmount = parseInt(donateAmt) - 100
+      const newAmount = parseInt(donateAmt) - 100;
       setDonateAmt(newAmount.toString());
     }
   };
   const handleAdd = () => {
-    const newAmount = parseInt(donateAmt) + 100
+    const newAmount = parseInt(donateAmt) + 100;
     setDonateAmt(newAmount.toString());
   };
 
   //Function for buttons
   const backButton = () => {
-    navigate('/campaigns');
+    navigate("/campaigns");
     setDonateAmt(0);
   };
 
@@ -66,16 +65,15 @@ const SingleCampaign = () => {
       setShowModal(true);
       // console.log(donateCampaign)
     } catch (err) {
-      console.error(err);      
+      console.error(err);
     }
   };
-
 
   return (
     <>
       <div className="relative w-auto my-6 mx-auto max-w-3xl">
-      {/*content*/}
-        <form onSubmit={donateButton} >
+        {/*content*/}
+        <form onSubmit={donateButton}>
           <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
             {/*body*/}
             <div className="w-full lg:max-w-full lg:flex">
@@ -107,7 +105,7 @@ const SingleCampaign = () => {
                   target={selectedCampaign.amountTarget.toLocaleString("en-US")}
                 />
                 <div className="text-gray-700 font-bold text-xl mb-5">
-                {selectedCampaign.title}
+                  {selectedCampaign.title}
                 </div>
                 <p className="text-gray-700 text-base mb-5">
                   {selectedCampaign.description}
@@ -116,11 +114,12 @@ const SingleCampaign = () => {
                   <label
                     htmlFor="custom-input-number"
                     className="w-full text-gray-700 text-sm font-semibold mr-5"
-                  >Amount (SGD)
+                  >
+                    Amount (SGD)
                   </label>
                   <div className="flex flex-row justify-around h-10 w-full rounded-lg relative bg-transparent mt-1">
                     <button
-                    type="button"
+                      type="button"
                       data-action="decrement"
                       className="text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none border border-gray-500"
                       onClick={handleSubtract}
@@ -135,7 +134,7 @@ const SingleCampaign = () => {
                       onChange={(e) => setDonateAmt(e.target.value)}
                     ></input>
                     <button
-                    type="button"
+                      type="button"
                       data-action="increment"
                       className="text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer outline-none border border-gray-500"
                       onClick={handleAdd}
@@ -162,10 +161,15 @@ const SingleCampaign = () => {
               />
             </div>
           </div>
-          </form>
-        </div>
-        {showModal ? <DonateSuccessModal setDonateAmt={setDonateAmt} setShowModal={setShowModal} selectedCampaign={selectedCampaign}/> : null}
-         
+        </form>
+      </div>
+      {showModal ? (
+        <DonateSuccessModal
+          setDonateAmt={setDonateAmt}
+          setShowModal={setShowModal}
+          selectedCampaign={selectedCampaign}
+        />
+      ) : null}
     </>
   );
 };

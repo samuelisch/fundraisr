@@ -18,11 +18,7 @@ const Homepage = () => {
 
       <div className="flex justify-evenly">
         <div className="relative">
-          <img
-            src={mainleft}
-            className="rounded-lg object-fill h-96"
-            alt=""
-          />
+          <img src={mainleft} className="rounded-lg object-fill h-96" alt="" />
           <Button
             type="button"
             text="Donate"
@@ -37,7 +33,7 @@ const Homepage = () => {
             type="button"
             text="Start a Campaign"
             className="h-10 px-5 bg-white text-primary transition-colors duration-150 rounded-lg focus:shadow-outline hover:bg-primary hover:text-white absolute font-bold left-5 top-5"
-            clickHandler={() => navigate('/newcampaign')}
+            clickHandler={() => navigate("/newcampaign")}
           />
         </div>
       </div>
@@ -45,7 +41,6 @@ const Homepage = () => {
         Works best with MAC OS
       </h1>
     </div>
-   
   );
 };
 

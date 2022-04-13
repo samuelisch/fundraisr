@@ -43,30 +43,31 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <UserContext.Provider value={{user, setUser}}>
+      <UserContext.Provider value={{ user, setUser }}>
         <Navbar />
         <Routes>
           <Route path="/" element={<Homepage />} />
-          <Route path="/login" element={<Login />} /> 
+          <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/campaigns" element={<CampaignList />} />
           <Route path="/campaigns/:id" element={<SingleCampaign />} />
-          <Route path="/newcampaign" element={
-            <ProtectedRoute>
-              <NewCampaign />
-            </ProtectedRoute>
-            } 
-          />
-          <Route path="/profile" element={
-            <ProtectedRoute>
-              <UserProfile />
-            </ProtectedRoute>
-            } 
+          <Route
+            path="/newcampaign"
+            element={
+              <ProtectedRoute>
+                <NewCampaign />
+              </ProtectedRoute>
+            }
           />
           <Route
-            path="*"
-            element={<Navigate to="/" replace />}
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <UserProfile />
+              </ProtectedRoute>
+            }
           />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </UserContext.Provider>
     </BrowserRouter>
