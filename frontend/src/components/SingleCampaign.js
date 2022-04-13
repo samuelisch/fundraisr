@@ -65,6 +65,7 @@ const SingleCampaign = () => {
       setShowModal(true);
       // console.log(donateCampaign)
     } catch (err) {
+      navigate('/login')
       console.error(err);
     }
   };
