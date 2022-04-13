@@ -1,10 +1,12 @@
-import React, { useContext } from "react";
+import React, {useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../App";
 import Button from "./assets/Button";
 
 const Navbar = () => {
+  
   const {user, setUser} = useContext(UserContext);
+ 
   const navigate = useNavigate();
 
   const logoutUser = () => {

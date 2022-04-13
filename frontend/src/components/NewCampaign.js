@@ -4,6 +4,7 @@ import Button from "./assets/Button";
 import Input from "./assets/Input";
 
 const NewCampaign = () => {
+
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [amountTarget, setAmountTarget] = useState('')
@@ -54,7 +55,8 @@ console.log(tags)
 
   return (
     <>
-    <h1 className="font-bold">Create New Campaign</h1>
+    <div className="flex-col items-center justify-center text-center">
+    <h1 className="font-bold text-2xl p-5 text-gray-700">Start A New Campaign</h1>
     <form onSubmit={submitHandler}>
       <label htmlFor="title">Title:</label>
         <br />
@@ -63,6 +65,7 @@ console.log(tags)
         <br />
       <label htmlFor="description">Description:</label>
         <br />
+        <textarea className="border-2 border-blue-600 rounded-lg" type="text" placeholder="Description" value={description} changeHandler={(e) => setDescription(e.target.value)} />
         <Input className="border-2 border-blue-600 rounded-lg" type="text" placeholder="Description" value={description} changeHandler={(e) => setDescription(e.target.value)} />
         <br />
         <br />
@@ -136,6 +139,7 @@ console.log(tags)
           <Button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-10" type="submit" text="Create" />
         </div>
     </form>
+    </div>
     </>
   );
 };

@@ -12,15 +12,18 @@ const Login = () => {
   const { setUser } = useContext(UserContext);
   const authenticated = window.localStorage.getItem('loggedUser')
 
+  const [loginValidation, setLoginValidation] = useState("")
+
   useEffect(() => {
     if (authenticated) {
       console.log('checking')
       navigate('/')
-    }
+    } 
   }, [authenticated, navigate])
 
   const loginUser = async (e) => {
     e.preventDefault();
+    try {
     const credentials = {
       email: loginEmail,
       password: loginPassword,
@@ -34,20 +37,24 @@ const Login = () => {
     //clears form
     setLoginEmail("");
     setLoginPassword("");
+    setLoginValidation("")
     setUser(loginData)
     navigate('/')
+    } catch (error) {
+      setLoginValidation("Incorrect email/password")
+    }
   };
 
   return (
     <div className="flex flex-col items-center justify-center text-center">
-      <h1 className="font-bold text-2xl p-5">Login to Fundraisr</h1>
+      <h1 className="font-bold text-2xl p-5 text-gray-700">Login to Fundraisr</h1>
       <form onSubmit={loginUser} className="flex flex-col items-center justify-center">
+        <h1 className="text-red-600">{loginValidation}</h1>
         <Input
           label="login-email"
           type="email"
           value={loginEmail}
           changeHandler={(e) => setLoginEmail(e.target.value)}
-          className="border-2 border-blue-600 rounded-lg p-1 m-3"
           placeholder="E-mail"
         />
         <Input
@@ -55,16 +62,15 @@ const Login = () => {
           type="password"
           value={loginPassword}
           changeHandler={(e) => setLoginPassword(e.target.value)}
-          className="border-2 border-blue-600 rounded-lg p-1 m-3"
           placeholder="Password"
         />
         <Button
           type="submit"
           text="Login"
-          className="bg-blue-500 text-lg hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded"
+          className="btn rounded-lg bg-primary hover:bg-primary/70 border-none text-white normal-case"
         />
       </form>
-      <p className="p-5 text-sm">New to Fundraisr? <span className="text-blue-500 hover:text-blue-700 hover: cursor-pointer" onClick={() => navigate('/signup')}>Sign up with us</span></p>
+      <p className="p-5 text-sm">New to Fundraisr? <span className="text-primary hover:text-primary hover: cursor-pointer" onClick={() => navigate('/signup')}>Sign up with us</span></p>
     </div>
   );
 };
