@@ -31,15 +31,15 @@ const NewCampaign = () => {
     setTags([])
   }
 
-  let buttonStyle = "inline-block px-6 py-2 border-2 border-blue-600 text-blue-600 font-medium text-xs leading-tight rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out";
+  let buttonStyle = "inline-block px-6 py-2 border-2 border-primary text-primary font-medium text-xs leading-tight rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out";
 
   const handleTagsChange = (event) => {
     if (!tags.includes(event.target.value)) {
-      event.target.className = "bg-blue-600 inline-block px-6 py-2 border-2 border-blue-600 text-white font-medium text-xs leading-tight rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out";      
+      event.target.className = "bg-primary inline-block px-6 py-2 border-2 border-primary text-white font-medium text-xs leading-tight rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out";      
       setTags((prevState) => {
       return [...prevState, event.target.value]
       })} else {
-      event.target.className = "inline-block px-6 py-2 border-2 border-blue-600 text-blue-600 font-medium text-xs leading-tight rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out";
+      event.target.className = "inline-block px-6 py-2 border-2 border-primary text-primary font-medium text-xs leading-tight rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out";
       const tagsArr = tags.filter((element) => element !== event.target.value)
       setTags(tagsArr)
     }
@@ -57,36 +57,34 @@ console.log(tags)
     <div className="flex-col items-center justify-center text-center">
     <h1 className="font-bold text-2xl p-5 text-gray-700">Start A New Campaign</h1>
     <form onSubmit={submitHandler}>
-      <label htmlFor="title">Title:</label>
-        <br />
-        <Input className="border-2 border-blue-600 rounded-lg" type="text" placeholder="Title" value={title} changeHandler={(e) => setTitle(e.target.value)} />
-        <br />
-        <br />
-      <label htmlFor="description">Description:</label>
-        <br />
-        <textarea className="border-2 border-blue-600 rounded-lg" type="text" placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} />
-        <Input className="border-2 border-blue-600 rounded-lg" type="text" placeholder="Description" value={description} changeHandler={(e) => setDescription(e.target.value)} />
-        <br />
-        <br />
-      <label htmlFor="target-amount">Target Amount:</label>
-        <br />
-        <Input className="border-2 border-blue-600 rounded-lg" type="number" placeholder="Target amount" value={amountTarget} changeHandler={(e) => setAmountTarget(e.target.value)} />
-        <br />
-        <br/>
-      <label htmlFor="end-date">End Date:</label>
-        <br />
-        <Input className="border-2 border-blue-600 rounded-lg" type="date" min={tomorrowuse} value={dateEnd} changeHandler={(e) => setDateEnd(e.target.value)} />
-        <br />
-        <br/>
-      <label htmlFor="upload-image">Upload Image:</label>
-        <br />
-        <Input type="file" multiple={true} changeHandler={(e) => setImage(e.target.files[0])} />
-        <br/>
-        <br/>
-      <label htmlFor="tags">Tags:</label>
-        <br />
-        <div id="selection" className="flex space-x-2 justify-start">
-        <Button
+      <div id="rowone" className="flex flex-row ml-10 mr-10 mb-3">
+        <div id="title">  
+          <label htmlFor="title" className="text-gray-700 ml-5">Title:</label>
+          <Input type="text" value={title} changeHandler={(e) => setTitle(e.target.value)} />
+        </div>
+        <div id="amount">
+          <label htmlFor="target-amount" className="text-gray-700 ml-5">Target Amount:</label>
+          <Input type="number" value={amountTarget} changeHandler={(e) => setAmountTarget(e.target.value)} />
+        </div>
+      </div>
+      <div id="rowtwo" className="flex flex-row ml-10 mr-10 mb-3">
+        <label htmlFor="description" className="text-gray-700 ml-5">Description:</label>
+        <textarea className="w-96 h-24 px-4 text-sm text-gray-700 bg-white border border-gray-200 rounded-lg focus:border-primary focus:outline-none focus:ring focus:ring-primary focus:ring-opacity-20 p-1 m-3" type="text"  value={description} onChange={(e) => setDescription(e.target.value)} />
+      </div>
+      <div id="rowthree" className="flex flex-row ml-10 mr-10 mb-3">
+        <div id="enddate">
+          <label htmlFor="end-date" className="text-gray-700 ml-5">End Date:</label>
+          <Input type="date" min={tomorrowuse} value={dateEnd} changeHandler={(e) => setDateEnd(e.target.value)} />
+        </div>
+        <div id="upload-image">
+          <label htmlFor="upload-image">Upload Image:</label>
+          <Input type="file" multiple={true} changeHandler={(e) => setImage(e.target.files[0])} />
+          </div>
+        </div>
+        <div id="rowfour" className="flex flex-row ml-10 mr-10 mb-3">
+          <label htmlFor="tags" className="text-gray-700 ml-5 mr-5">Tags:</label>
+          <div id="selection" className="flex space-x-2 justify-start grid grid-cols-4 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-8 xl:grid-cols-8 gap-2">
+          <Button
             type="button"
             className={buttonStyle}
             clickHandler={handleTagsChange}
@@ -134,9 +132,8 @@ console.log(tags)
             text="Visually impaired"
           />
         </div>
-        <div className="form-group">
-          <Button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-10" type="submit" text="Create" />
-        </div>
+      </div>
+          <Button className="btn rounded-lg bg-primary hover:bg-primary/70 border-none text-white normal-case mt-5" type="submit" text="Create" />
     </form>
     </div>
     </>
