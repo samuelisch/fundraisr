@@ -14,6 +14,8 @@ const UserPasswordEditForm = ({ handleSubmit }) => {
     };
 
     handleSubmit(passwordObj);
+    setOldPassword('')
+    setNewPassword('')
   };
 
   return (

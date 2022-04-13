@@ -47,7 +47,6 @@ const UserProfile = () => {
 
   const handlePasswordChange = async (passwordObj) => {
     await callApi.updatePassword(user.id, passwordObj)
-    console.log('updated password')
   }
 
   const donationsView = donationsList.map(donation => (

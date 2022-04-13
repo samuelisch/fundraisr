@@ -4,7 +4,6 @@ import Button from "./assets/Button";
 import Input from "./assets/Input";
 
 const NewCampaign = () => {
-
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [amountTarget, setAmountTarget] = useState('')
@@ -65,7 +64,7 @@ console.log(tags)
         <br />
       <label htmlFor="description">Description:</label>
         <br />
-        <textarea className="border-2 border-blue-600 rounded-lg" type="text" placeholder="Description" value={description} changeHandler={(e) => setDescription(e.target.value)} />
+        <textarea className="border-2 border-blue-600 rounded-lg" type="text" placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} />
         <Input className="border-2 border-blue-600 rounded-lg" type="text" placeholder="Description" value={description} changeHandler={(e) => setDescription(e.target.value)} />
         <br />
         <br />

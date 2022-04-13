@@ -37,12 +37,6 @@ const App = () => {
     }
   }, []);
 
-  useEffect(() => {
-    if (user) {
-      console.log(`logged in as ${user.name}`);
-    }
-  }, [user]);
-
   if (!loaded) {
     return null;
   }

@@ -16,7 +16,6 @@ const Login = () => {
 
   useEffect(() => {
     if (authenticated) {
-      console.log('checking')
       navigate('/')
     } 
   }, [authenticated, navigate])
@@ -24,24 +23,23 @@ const Login = () => {
   const loginUser = async (e) => {
     e.preventDefault();
     try {
-    const credentials = {
-      email: loginEmail,
-      password: loginPassword,
-    };
-    const loginData = await callApi.userLogin(credentials);
-    // set token to callApi
-    callApi.setToken(loginData.token)
-    //set token to localStorage
-    window.localStorage.setItem('loggedUser', JSON.stringify(loginData));
-    console.log('logged in!');
-    //clears form
-    setLoginEmail("");
-    setLoginPassword("");
-    setLoginValidation("")
-    setUser(loginData)
-    navigate('/')
+      const credentials = {
+        email: loginEmail,
+        password: loginPassword,
+      };
+      const loginData = await callApi.userLogin(credentials);
+      // set token to callApi
+      callApi.setToken(loginData.token)
+      //set token to localStorage
+      window.localStorage.setItem('loggedUser', JSON.stringify(loginData));
+      //clears form
+      setLoginEmail("");
+      setLoginPassword("");
+      setLoginValidation("")
+      setUser(loginData)
+      navigate('/')
     } catch (error) {
-      setLoginValidation("Incorrect email/password")
+      setLoginValidation("Incorrect email / password")
     }
   };
 

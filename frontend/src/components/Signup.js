@@ -32,8 +32,7 @@ const Signup = () => {
   const createUser = async (e) => {
     e.preventDefault();
     try {
-      const createdUser = await callApi.createUser(name, email, password);
-      console.log(createdUser);
+      await callApi.createUser(name, email, password);
       //clear form
       setName("");
       setEmail("");
