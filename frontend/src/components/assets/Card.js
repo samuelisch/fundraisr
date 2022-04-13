@@ -9,7 +9,7 @@ const Card = ({id, imageURL, title, amountDonated, amountTarget, dateEnd}) => {
 
     return (
         <div>
-            <div className=" w-full lg:max-w-full lg:flex" key={id} onClick={() => navigate(`/campaigns/${id}`)}>
+            <div className=" w-full lg:max-w-full lg:flex hover:cursor-pointer" key={id} onClick={() => navigate(`/campaigns/${id}`)}>
         <div
           className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
           style={{ backgroundImage: `url(${imageURL})` }}

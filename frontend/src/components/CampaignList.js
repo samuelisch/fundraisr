@@ -3,9 +3,7 @@ import Button from "./assets/Button";
 import Card from "./assets/Card";
 import callApi from "../callApi";
 
-
 const CampaignList = () => {
-
   const [campaignList, setCampaignList] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null); // filter
   const [listToShow, setListToShow] = useState([]); // state of campaigns according to filter
@@ -48,10 +46,8 @@ const CampaignList = () => {
 
   // maps over listToShow, already filtered according to selectedCategory
   const viewList = listToShow.map((element) => {
-    
     return (
-
-      <Card id={element.id} imageURL={element.image.url} title={element.title} amountDonated={element.amountDonated} amountTarget={element.amountTarget} dateEnd={element.dateEnd}
+      <Card key={element.id} id={element.id} imageURL={element.image.url} title={element.title} amountDonated={element.amountDonated} amountTarget={element.amountTarget} dateEnd={element.dateEnd}
       />
 
     );
@@ -64,7 +60,6 @@ const CampaignList = () => {
   if (!campaignList.length) {
     return <p className="text-xl text-center mt-5">No campaigns in process! Consider starting one</p>;
   }
-
 
   return (
     <>

@@ -3,12 +3,14 @@ import UserEditForm from "./UserEditForm";
 import callApi from "../callApi";
 import { UserContext } from "../App";
 import UserPasswordEditForm from "./UserPasswordEditForm";
+import { getNumberOfDays } from "./assets/utils";
 
 const UserProfile = () => {
   const { user, setUser } = useContext(UserContext);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [donationsList, setDonationsList] = useState([]);
+  const [campaignsList, setCampaignsList] = useState([])
 
   useEffect(() => {
     let fetching = true;
@@ -17,9 +19,9 @@ const UserProfile = () => {
       setEmail(user.email)
       callApi.singleUser(user.id).then((data) => {
         if (fetching) {
-          console.log(data.campaignsCreated);
-          const sliceStart = user.donations.length > 10 ? user.donations.length - 10 : user.donations.length;
-          setDonationsList(user.donations.slice(sliceStart))
+          const sliceStart = data.donations.length > 10 ? data.donations.length - 10 : 0;
+          setDonationsList(data.donations.slice(sliceStart));
+          setCampaignsList(data.campaignsCreated);
         }
       });
     }
@@ -49,10 +51,23 @@ const UserProfile = () => {
   }
 
   const donationsView = donationsList.map(donation => (
-    <li>
-
+    <li key={donation._id}>
+      <p>Title: {donation.campaign.title}</p>
+      <p>{donation.amount}</p>
     </li>
   ))
+
+  const campaignsView = campaignsList.map(campaign => {
+    const daysLeft = getNumberOfDays(campaign.dateEnd)
+    const percentageDonation = ((campaign.amountDonated / campaign.amountTarget) * 100).toFixed(1)
+    return (
+      <li key={campaign.id}>
+        <p>Title: {campaign.title}</p>
+        <p>{daysLeft} days left</p>
+        <p>{percentageDonation}% of {campaign.amountTarget} target reached</p>
+      </li>
+    )
+    })
 
   return (
     <>
@@ -64,8 +79,13 @@ const UserProfile = () => {
         handleSubmit={handleProfileEditSubmit}
       />
       <UserPasswordEditForm  handleSubmit={handlePasswordChange} />
+      <h2 className="font-bold text-xl" >Recent Donations:</h2>
       <ul>
-
+        {donationsView}
+      </ul>
+      <h2 className="font-bold text-xl">Campaigns Initiated</h2>
+      <ul>
+        {campaignsView}
       </ul>
     </>
   );

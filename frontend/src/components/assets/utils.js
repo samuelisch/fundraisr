@@ -9,6 +9,5 @@ export function getNumberOfDays(end) {
   const diffInTime = date2.getTime() - date1.getTime();
   // Calculating the no. of days between two dates
   const diffInDays = Math.round(diffInTime / oneDay);
-  console.log(diffInDays);
   return diffInDays;
 }

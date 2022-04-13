@@ -19,6 +19,8 @@ usersRouter.get('/:id', userExtractor, async (request, response) => {
 
   const user = await User
     .findById(userId)
+    .populate('campaignsCreated', {title: 1, dateEnd: 1, amountDonated: 1, amountTarget: 1})
+    .populate('donations.campaign', {title: 1})
   
   if (user) {
     response.json(user)
