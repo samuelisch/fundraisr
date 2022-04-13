@@ -8,7 +8,7 @@ const ProgressBar = ({ percentage, target }) => {
       {/* <div className={className}> */}
       <div className="flex justify-end mb-1">
         <span className="text-sm font-medium text-primary">
-          {percentage}% to ${target}
+          {percentage}% of ${target}
         </span>
       </div>
       <div className="w-full bg-gray-200 rounded-full h-2.5 mb-5">

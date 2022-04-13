@@ -32,17 +32,8 @@ const CampaignList = () => {
   
   const handleCategoryChange = (event) => {
     setSelectedCategory(event.target.value);
-    
-    // if (selectedCategory) {
-    //   event.target.className = "inline-block px-3 py-1 border border-gray-400 bg-gray-400 text-white font-medium text-lg leading-tight rounded-full"
-    // } else {
-    //   event.target.className = "inline-block px-3 py-1 border border-gray-400 text-gray-500 font-medium text-lg leading-tight rounded-full hover:bg-gray-100  focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
-  
-    // }
-  
+       
   };
-
-  // console.log(selectedCategory)
 
   // maps over listToShow, already filtered according to selectedCategory
   const viewList = listToShow.map((element) => {
