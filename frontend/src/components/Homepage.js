@@ -9,10 +9,10 @@ const Homepage = () => {
 
   return (
     <div>
-      <h1 className="font-bold text-center text-xl mt-5 mb-5">
+      <h1 className="font-bold text-center text-xl mt-5 mb-2 text-gray-700">
         Support a cause, show you care.
       </h1>
-      <h1 className="font-bold text-center text-l text-blue-700 mb-5">
+      <h1 className="font-bold text-center text-lg text-primary mb-2">
         I want to...
       </h1>
 
@@ -26,7 +26,7 @@ const Homepage = () => {
           <Button
             type="button"
             text="Donate"
-            className="h-10 px-5 bg-white text-blue-700 transition-colors duration-150 rounded-lg focus:shadow-outline hover:bg-blue-500 hover:text-blue-100 absolute font-bold left-5 top-5"
+            className="h-10 px-5 bg-white text-primary transition-colors duration-150 rounded-lg focus:shadow-outline hover:bg-primary hover:text-white absolute font-bold left-5 top-5"
             clickHandler={() => navigate("/campaigns")}
           />
         </div>
@@ -36,12 +36,14 @@ const Homepage = () => {
           <Button
             type="button"
             text="Start a Campaign"
-            className="h-10 px-5 bg-white text-blue-700 transition-colors duration-150 rounded-lg focus:shadow-outline hover:bg-blue-500 hover:text-blue-100 absolute font-bold left-5 top-5"
+            className="h-10 px-5 bg-white text-primary transition-colors duration-150 rounded-lg focus:shadow-outline hover:bg-primary hover:text-white absolute font-bold left-5 top-5"
             clickHandler={() => navigate('/newcampaign')}
           />
         </div>
       </div>
-
+      <h1 className="text-center text-sm text-gray-400 m-2">
+        Works best with MAC OS
+      </h1>
     </div>
    
   );

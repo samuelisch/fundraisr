@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "./assets/Button";
 import ProgressBar from "./assets/ProgressBar";
+import DaysLeft from "./assets/DaysLeft";
 import callApi from "../callApi";
 
 import { useParams } from "react-router-dom";
+
+import DonateSuccessModal from "./DonateSuccessModal";
 
 const SingleCampaign = () => {
   
@@ -14,6 +17,7 @@ const SingleCampaign = () => {
   const [selectedCampaign, setSelectedCampaign] = useState(null);
   const [currentPercent, setCurrentPercent] = useState(0);
   const [donateAmt, setDonateAmt] = useState(0);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     if (id) {
@@ -36,11 +40,11 @@ const SingleCampaign = () => {
   //Functions for Amount to Donate
   const handleSubtract = () => {
     if (donateAmt > 0) {
-      setDonateAmt(donateAmt - 10);
+      setDonateAmt(donateAmt - 100);
     }
   };
   const handleAdd = () => {
-    setDonateAmt(donateAmt + 10);
+    setDonateAmt(donateAmt + 100);
   };
 
   //Function for buttons
@@ -57,34 +61,28 @@ const SingleCampaign = () => {
     e.preventDefault();
     try {
       const donateCampaign = await callApi.donateCampaign(id, donateAmt);
-      console.log(donateCampaign)
+      setShowModal(true);
+      // console.log(donateCampaign)
     } catch (err) {
       console.error(err);      
     }
   };
 
-  //Days left
-  let today = new Date().toLocaleDateString('eng-ca');
-  // let dateEnd = selectedCampaign.dateEnd;
-  // const diffDays = parseInt((dateEnd - today) / (1000 * 60 * 60 * 24), 10); 
-
-  console.log(selectedCampaign.dateEnd)
-  console.log(today)
-
 
   return (
     <>
-      {/* <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"> */}
-        <div className="relative w-auto my-6 mx-auto max-w-3xl">
-          {/*content*/}
-          <form onSubmit={donateButton} >
+      <div className="relative w-auto my-6 mx-auto max-w-3xl">
+      {/*content*/}
+        <form onSubmit={donateButton} >
           <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
             {/*body*/}
-            {/* <div className="flex flex-row justify-around"> */}
             <div className="w-full lg:max-w-full lg:flex">
               <div className="flex flex-col">
-              <img
-                  className="object-fill h-100 px-6 pt-4 pb-2 rounded"
+                <div className="px-6 pt-4 pb-2">
+                  <DaysLeft dateEnd={selectedCampaign.dateEnd} />
+                </div>
+                <img
+                  className="h-100 lg:h-auto lg:w-100 flex-none rounded-lg text-center overflow-hidden m-5"
                   src={selectedCampaign.image.url}
                   alt="campaign"
                 />
@@ -106,23 +104,17 @@ const SingleCampaign = () => {
                   percentage={currentPercent}
                   target={selectedCampaign.amountTarget.toLocaleString("en-US")}
                 />
-                <div className="text-gray-900 font-bold text-xl mb-5">
-                  {selectedCampaign.title}
+                <div className="text-gray-700 font-bold text-xl mb-5">
+                {selectedCampaign.title}
                 </div>
-                <Button
-                  type="button"
-                  className="inline-block px-3 py-1 border-2 border-blue-600 text-blue-600 font-medium text-xs leading-tight rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
-                  text={` days left`}
-                />
                 <p className="text-gray-700 text-base mb-5">
                   {selectedCampaign.description}
                 </p>
-                <div className="custom-number-input h-10 w-32 flex flex-row">
+                <div className="custom-number-input h-10 w-48 flex flex-col">
                   <label
                     htmlFor="custom-input-number"
                     className="w-full text-gray-700 text-sm font-semibold mr-5"
-                  >
-                    Amount
+                  >Amount (SGD)
                   </label>
                   <div className="flex flex-row justify-around h-10 w-full rounded-lg relative bg-transparent mt-1">
                     <button
@@ -155,13 +147,13 @@ const SingleCampaign = () => {
             {/*footer*/}
             <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
               <Button
-                className="text-blue-500 background-transparent px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 rounded border border-blue-500"
+                className="btn rounded-lg text-primary normal-case bg-white border-primary hover:bg-primary/30 hover:border-primary/20 mr-5"
                 type="button"
                 text="Back"
                 clickHandler={backButton}
               />
               <Button
-                className="bg-blue-500 text-white active:bg-emerald-600 text-sm px-6 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                className="btn rounded-lg bg-primary hover:bg-primary/70 border-none text-white normal-case"
                 type="submit"
                 text="Confirm Donation"
                 disabled={false}
@@ -170,7 +162,8 @@ const SingleCampaign = () => {
           </div>
           </form>
         </div>
-      {/* </div> */}
+        {showModal ? <DonateSuccessModal setDonateAmt={setDonateAmt} setShowModal={setShowModal} selectedCampaign={selectedCampaign}/> : null}
+         
     </>
   );
 };
