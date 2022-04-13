@@ -41,7 +41,7 @@ const CampaignList = () => {
       <Card
         key={element.id}
         id={element.id}
-        imageURL={element.image.url}
+        imageURL={element.image ? element.image.url : 'https://res.cloudinary.com/dlp0xmaud/image/upload/v1649857382/fundraisr/nkudroa4rf5lvqkpheir.jpg'}
         title={element.title}
         amountDonated={element.amountDonated}
         amountTarget={element.amountTarget}

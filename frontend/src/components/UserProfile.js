@@ -50,8 +50,8 @@ const UserProfile = () => {
     await callApi.updatePassword(user.id, passwordObj);
   };
 
-  const donationsView = donationsList.map((donation) => (
-    <tr>
+  const donationsView = donationsList.map((donation, i) => (
+    <tr key={i}>
       <td className="border-b border-slate-100  p-4 pl-8 text-slate-500 ">
         {donation.campaign.title}
       </td>
@@ -69,7 +69,7 @@ const UserProfile = () => {
     ).toFixed(1);
 
     return (
-      <tr>
+      <tr key={campaign.id}>
         <td className="border-b border-slate-100  p-4 pl-8 text-slate-500 ">
           {campaign.title}
         </td>
@@ -100,7 +100,7 @@ const UserProfile = () => {
           </h2>
           <div className="relative rounded-xl overflow-auto">
             <div className="shadow-sm overflow-hidden my-5">
-              <table class="table-auto">
+              <table className="table-auto">
                 <thead>
                   <tr>
                     <th className="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">
@@ -123,7 +123,7 @@ const UserProfile = () => {
           </h2>
           <div className="relative rounded-xl overflow-auto">
             <div className="shadow-sm overflow-hidden my-5">
-              <table class="table-auto">
+              <table className="table-auto">
                 <thead>
                   <tr>
                     <th className="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">
