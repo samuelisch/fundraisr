@@ -62,6 +62,7 @@ const Signup = () => {
           value={email}
           placeholder=" New email"
           changeHandler={(e) => setEmail(e.target.value)}
+          minLength={3}
         />
         <Input
           className="border-2 border-blue-600 rounded-lg p-1  m-3"

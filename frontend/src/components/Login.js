@@ -30,11 +30,11 @@ const Login = () => {
     callApi.setToken(loginData.token)
     //set token to localStorage
     window.localStorage.setItem('loggedUser', JSON.stringify(loginData));
-    setUser(loginData)
     console.log('logged in!');
     //clears form
     setLoginEmail("");
     setLoginPassword("");
+    setUser(loginData)
     navigate('/')
   };
 

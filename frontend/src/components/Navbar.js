@@ -45,9 +45,9 @@ const Navbar = () => {
                 className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
               >
                 <li>
-                  <a className="justify-between" href="#temp">
+                  <span onClick={() => navigate(`/profile`)}>
                     Profile
-                  </a>
+                  </span>
                 </li>
                 <li>
                   <span onClick={logoutUser}>Logout</span>

@@ -68,13 +68,23 @@ usersRouter.put('/edit/:id', userExtractor, async (request, response) => {
 })
 
 usersRouter.put('/edit/password/:id', userExtractor, async (request, response) => {
+  const body = request.body;
   const loggedUserId = request.user._id.toString()
   const userId = request.params.id
+  const user = await User.findById(userId)
   if (loggedUserId !== userId) {
     response.status(401).send({ error: 'Unauthorised' });
   }
 
-  const password = request.body.password;
+  const passwordCorrect = await bcrypt.compare(body.oldPassword, user.passwordHash)
+
+  if (!passwordCorrect) {
+    return response.status(401).json({
+      error: 'Invalid password'
+    })
+  }
+
+  const password = body.newPassword;
   if (password.length < 5) {
     response.status(400).json({ error: "Minimum password length of 5 required"})
   }

@@ -52,6 +52,19 @@ const updateUser = async (userId, updateObj) => {
   return response.data;
 };
 
+const updatePassword = async (userId, passwordObj) => {
+  const config = {
+    headers: { Authorization: token },
+  };
+
+  const response = await axios.put(
+    `${baseURL}/users/edit/password/${userId}`,
+    passwordObj,
+    config
+  );
+  return response.data
+};
+
 //Campaign
 const allCampaigns = async () => {
   const response = await axios.get(`${baseURL}/campaigns`);
@@ -76,15 +89,14 @@ const donateCampaign = async (id, amountDonated) => {
   const config = {
     headers: { Authorization: token },
   };
-  
+
   const response = await axios.put(
     `${baseURL}/campaigns/edit/donation/${id}`,
-    {amountDonated},
+    { amountDonated },
     config
   );
   return response.data;
-}
-
+};
 
 const updateCampaign = async (id, updateObj) => {
   const config = {
@@ -110,7 +122,8 @@ const server = {
   createCampaign,
   updateCampaign,
   setToken,
-  donateCampaign
+  donateCampaign,
+  updatePassword,
 };
 
 export default server;

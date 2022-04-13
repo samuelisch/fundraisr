@@ -9,6 +9,7 @@ import SingleCampaign from "./components/SingleCampaign";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import ProtectedRoute from "./ProtectedRoute";
+import UserProfile from "./components/UserProfile";
 
 export const UserContext = createContext();
 
@@ -62,7 +63,12 @@ const App = () => {
             </ProtectedRoute>
             } 
           />
-          {/* <Route path="/profile/:id" element={<UserProfile />} /> */}
+          <Route path="/profile" element={
+            <ProtectedRoute>
+              <UserProfile />
+            </ProtectedRoute>
+            } 
+          />
           <Route
             path="*"
             element={<Navigate to="/" replace />}
