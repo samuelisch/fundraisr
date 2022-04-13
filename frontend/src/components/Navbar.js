@@ -14,9 +14,9 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar bg-base-200 sticky top-0 z-50">
+    <div className="navbar bg-white border-b border-gray-200 sticky top-0 z-50">
       <div className="flex-1">
-        <a className="btn btn-ghost normal-case text-xl" href="/">
+        <a className="btn btn-ghost normal-case text-xl text-gray-700" href="/">
           Fundraisr
         </a>
       </div>
@@ -57,8 +57,8 @@ const Navbar = () => {
           </>
         :
           <>
-            <Button type="button" className="btn rounded-md bg-blue-500 hover:bg-blue-600 border-none" text="login" clickHandler={() => navigate('/login')} />
-            <Button type="button" className="btn rounded-md bg-blue-500 hover:bg-blue-600 border-none" text="signup" clickHandler={() => navigate('/signup')} />
+            <Button type="button" className="btn rounded-lg bg-primary hover:bg-primary/70 border-none text-white normal-case" text="Login" clickHandler={() => navigate('/login')} />
+            <Button type="button" className="btn rounded-lg text-primary normal-case bg-white border-primary hover:bg-primary/30 hover:border-primary/20" text="Sign up" clickHandler={() => navigate('/signup')} />
           </>
         }
       </div>
