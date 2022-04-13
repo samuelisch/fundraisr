@@ -27,6 +27,7 @@ mongoose.connect(config.MONGODB_URI)
   })
 
 app.use(cors());
+app.use(express.static('build'))
 app.use(middleware.requestLogger);
 app.use(middleware.tokenExtractor);
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -37,6 +38,9 @@ app.use('/api/campaigns', campaignsRouter);
 app.use('/api/login', loginRouter)
 
 // REDIRECT ROUTE
+app.get('*', (request, response) => {
+  response.sendFile(path.resolve(__dirname+'/build/','index.html'));
+});
 
 app.use(middleware.unknownEndpoint);
 app.use(middleware.errorHandler);
