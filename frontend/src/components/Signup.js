@@ -5,6 +5,7 @@ import Button from "./assets/Button";
 import Input from "./assets/Input";
 
 const Signup = () => {
+  
   const navigate = useNavigate()
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -46,10 +47,9 @@ const Signup = () => {
 
   return (
     <div className="flex-col items-center justify-center text-center">
-      <h1 className="font-bold text-2xl p-5">Sign up with Fundraisr</h1>
+      <h1 className="font-bold text-2xl p-5 text-gray-700">Sign up with Fundraisr</h1>
       <form onSubmit={createUser} className="flex flex-col items-center justify-center">
         <Input
-          className="border-2 border-blue-600 rounded-lg p-1  m-3"
           type="text"
           value={name}
           placeholder="Name"
@@ -57,23 +57,20 @@ const Signup = () => {
           minLength={2}
         />
         <Input 
-          className="border-2 border-blue-600 rounded-lg p-1  m-3"
           type="email"
           value={email}
-          placeholder=" New email"
+          placeholder="Email"
           changeHandler={(e) => setEmail(e.target.value)}
           minLength={3}
         />
         <Input
-          className="border-2 border-blue-600 rounded-lg p-1  m-3"
           type="password"
           value={password}
-          placeholder="New password"
+          placeholder="Password (min. 5 characters)"
           changeHandler={(e) => setPassword(e.target.value)}
           minLength={5}
         />
         <Input
-          className="border-2 border-blue-600 rounded-lg p-1  m-3"
           type="password"
           value={confirmPassword}
           placeholder="Confirm password"
@@ -83,21 +80,21 @@ const Signup = () => {
         {valid
         ?
           <Button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2"
+            className="btn rounded-lg bg-primary hover:bg-primary/70 border-none text-white normal-case"
             type="submit"
-            text="Signup"
+            text="Sign up"
             disabled={false}
           />
         :
           <Button
-            className="bg-gray-500 text-white font-bold py-2 px-4 rounded mt-2"
+            className="btn rounded-lg bg-gray-100  border-none text-white normal-case"
             type="submit"
-            text="Signup"
+            text="Sign up"
             disabled={true}
           />
         }
       </form>
-      <p className="p-5 text-sm">Have an account? <span className="text-blue-500 hover:text-blue-700 hover: cursor-pointer" onClick={() => navigate('/login')}>Log in</span></p>
+      <p className="p-5 text-sm">Have an account? <span className="text-primary hover:text-primary hover: cursor-pointer" onClick={() => navigate('/login')}>Log in</span></p>
     </div>
   );
 };
