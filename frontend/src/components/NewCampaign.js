@@ -45,8 +45,6 @@ const NewCampaign = () => {
     }
   }
 
-console.log(tags)
-
   let today = new Date()
   let tomorrow = new Date() 
   tomorrow.setDate(today.getDate() + 1)

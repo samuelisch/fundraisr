@@ -40,11 +40,13 @@ const SingleCampaign = () => {
   //Functions for Amount to Donate
   const handleSubtract = () => {
     if (donateAmt > 0) {
-      setDonateAmt(donateAmt - 100);
+      const newAmount = parseInt(donateAmt) - 100
+      setDonateAmt(newAmount.toString());
     }
   };
   const handleAdd = () => {
-    setDonateAmt(donateAmt + 100);
+    const newAmount = parseInt(donateAmt) + 100
+    setDonateAmt(newAmount.toString());
   };
 
   //Function for buttons
