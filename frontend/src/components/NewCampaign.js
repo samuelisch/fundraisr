@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import server from "../callApi";
 import Button from "./assets/Button";
 import Input from "./assets/Input";
+import CreateCampaignModal from './CreateCampaignModal'
 
 const NewCampaign = () => {
   const [title, setTitle] = useState('')
@@ -10,6 +11,7 @@ const NewCampaign = () => {
   const [image, setImage] = useState('')
   const [dateEnd, setDateEnd] = useState('')
   const [tags, setTags] = useState([])
+  const [showModal, setShowModal] = useState(false);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -136,6 +138,8 @@ console.log(tags)
           <Button className="btn rounded-lg bg-primary hover:bg-primary/70 border-none text-white normal-case mt-5" type="submit" text="Create" />
     </form>
     </div>
+    {showModal ? <CreateCampaignModal setTitle={setTitle}setDescription={setDescription}setAmountTarget={setAmountTarget}setImage={setImage} setDateEnd={setDateEnd} setTags={setTags} setShowModal={setShowModal}/> : null}
+
     </>
   );
 };
