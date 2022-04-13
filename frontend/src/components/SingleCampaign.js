@@ -60,7 +60,7 @@ const SingleCampaign = () => {
   const donateButton = async (e) => {
     e.preventDefault();
     try {
-      const donateCampaign = await callApi.donateCampaign(id, donateAmt);
+      await callApi.donateCampaign(id, donateAmt);
       setShowModal(true);
       // console.log(donateCampaign)
     } catch (err) {
