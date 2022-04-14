@@ -20,7 +20,7 @@ The application makes use of a few technologies, along with create-react-app:
 useContext hook was used for global state of user variable.
 There is a main navbar accessible throughout the entire application, before the different routes are defined.
 
-Brief info on available endpoints, data schema and assets can be found documented [here](https://docs.google.com/spreadsheets/d/1LXs9GLtrfbVTpaDfY96GYKOjlXiRyP9oT2ZKWe5-vXM/edit?usp=sharing)
+Brief info on available endpoints, data schema and assets can be found [here](https://docs.google.com/spreadsheets/d/1LXs9GLtrfbVTpaDfY96GYKOjlXiRyP9oT2ZKWe5-vXM/edit?usp=sharing)
 
 ### Possible Further Features and complications
 - Ability to edit campaign
